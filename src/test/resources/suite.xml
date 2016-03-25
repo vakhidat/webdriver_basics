@@ -1,0 +1,8 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="YandexMailCheck">
+    <test name="MailScenario">
+        <classes>
+            <class name="com.epam.at.web_driver_task.AuthorisationTest"/>
+        </classes>
+    </test>
+</suite>
