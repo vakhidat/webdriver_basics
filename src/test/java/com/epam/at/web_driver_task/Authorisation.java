@@ -23,7 +23,6 @@ public class Authorisation extends MailScenario {
         driver.findElement(By.xpath("//input[@name=\"login\"]")).sendKeys(login);
         driver.findElement(By.xpath("//input[@name=\"passwd\"]")).sendKeys(password);
         driver.findElement(By.xpath("//div[@class=\"domik2__submit\"]")).click();
-        System.out.println(driver.getCurrentUrl());
         Assert.assertTrue(driver.getCurrentUrl().startsWith("https://mail.yandex.kz/?ncrnd="));
     }
 }
