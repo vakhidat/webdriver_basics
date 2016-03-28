@@ -14,4 +14,10 @@ public class DraftCreation extends MailScenario {
         driver.findElement(By.xpath("//a[@href=\"#inbox\"]")).click();
         driver.findElement(By.xpath("//div[@class=\"b-popup__confirm\"]/button")).click();
     }
+
+
+    @Test
+    public void draftCheckIsSaved() {
+
+    }
 }
