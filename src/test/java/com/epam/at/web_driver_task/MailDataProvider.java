@@ -11,4 +11,11 @@ public class MailDataProvider {
                 new Object[]{"test1441", "123qwerty"},
         };
     }
+
+    @DataProvider(name = "draftMailContentAndRecipientMail", parallel = true)
+    public static Object[][] draftMailContentAndRecipientMail(Method m) {
+        return new Object[][]{
+                new Object[]{"vahidat.m@yandex.ru", "Mail scenario", "Hi! Test finished successfully. Congrats :)"},
+        };
+    }
 }
