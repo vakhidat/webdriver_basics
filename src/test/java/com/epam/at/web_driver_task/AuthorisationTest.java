@@ -3,9 +3,7 @@ package com.epam.at.web_driver_task;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.Factory;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 
 import java.util.concurrent.TimeUnit;
 
@@ -15,15 +13,15 @@ public class AuthorisationTest {
     private String password;
     private static final String YANDEX_URL = "https://www.yandex.kz/";
 
-    @BeforeClass(alwaysRun = true)
+    @BeforeSuite(alwaysRun = true)
     public static void startFirefox() {
         WebDriverFactory.firefoxInstance().get(YANDEX_URL);
     }
 
-    /*@AfterClass(alwaysRun = true)
+    @AfterSuite(alwaysRun = true, dependsOnMethods = "logout")
     public static void quitFirefox() {
         WebDriverFactory.firefoxInstance().close();
-    }*/
+    }
 
     @Factory(dataProvider = "testAccountCredentials", dataProviderClass = MailDataProvider.class)
     public AuthorisationTest(String login, String password) {
@@ -37,15 +35,14 @@ public class AuthorisationTest {
         driver.findElement(By.xpath("//input[@name=\"login\"]")).sendKeys(login);
         driver.findElement(By.xpath("//input[@name=\"passwd\"]")).sendKeys(password);
         driver.findElement(By.xpath("//div[@class=\"domik2__submit\"]")).click();
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-        driver.navigate().refresh();
         System.out.println(driver.getCurrentUrl());
-        Assert.assertTrue(driver.getCurrentUrl().contains("uid=373236611&login=test1441#inbox"));
+        Assert.assertTrue(driver.getCurrentUrl().startsWith("https://mail.yandex.kz/?ncrnd="));
     }
 
-   /* @AfterTest
-    public void logoffSuccess() {
+    @AfterSuite
+    public void logout() {
         driver.findElement(By.xpath("//a[@id='nb-1']")).click();
-        driver.findElement(By.xpath("//a[@data-metric=\"Меню сервисов:Выход\"]")).click();
-    }*/
+        driver.findElement(By.xpath("id(\"user-dropdown-popup\")/descendant::div[@class=\"b-mail-dropdown__item\"][6]/a"))
+                .click();
+    }
 }
