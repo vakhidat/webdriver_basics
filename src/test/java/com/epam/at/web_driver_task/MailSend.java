@@ -10,8 +10,10 @@ import org.testng.annotations.Test;
 import java.util.concurrent.TimeUnit;
 
 public class MailSend extends MailScenario {
+    public static final String MAIL_SEND_MESSAGE = "Письмо успешно отправлено.";
+
     @Test
-    public void sendMailAndVerifySuccessSend() throws InterruptedException {
+    public void sendMailAndVerifySuccessSend(){
         Assert.assertNotNull(driver.findElement(By.xpath("//div[@class=\"b-mail-input__yabbles\"]/div/span/span[last()]")));
         driver.findElement(By.xpath("//table[@class=\"b-compose-head\"]/descendant::tr/td/descendant::span/button")).click();
         Wait<WebDriver> wait = new FluentWait<>(driver)
@@ -20,6 +22,12 @@ public class MailSend extends MailScenario {
         wait.until(webDriver -> driver.getCurrentUrl().endsWith("#done"));
         Assert.assertEquals(driver
                 .findElement(By.xpath("//div[@class=\"block-compose-done\"]/descendant::div[@class=\"b-done-title\"]"))
-                .getText(), "Письмо успешно отправлено.");
+                .getText(), MAIL_SEND_MESSAGE);
+    }
+
+    @Test
+    public void checkMailPresentInSentFolder() {
+        driver.findElement(By.xpath("//a[@href = \"#sent\"]")).click();
+        Assert.assertNotNull(driver.findElement(By.xpath("//div[@data-action=\"mail.message.show-or-select\"]")));
     }
 }

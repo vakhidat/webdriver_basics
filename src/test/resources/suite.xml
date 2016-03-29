@@ -23,14 +23,29 @@
     </test>
     <test name="MailSend" preserve-order="true">
         <classes>
-            <class name="com.epam.at.web_driver_task.MailSend"/>
+            <class name="com.epam.at.web_driver_task.MailSend">
+                <methods>
+                    <include name="sendMailAndVerifySuccessSend"/>
+                    <exclude name="checkMailPresentInSendFolder"/>
+                </methods>
+            </class>
         </classes>
     </test>
-    <test name="DraftDisappears">
+    <!--<test name="DraftDisappears">
         <classes>
             <class name="com.epam.at.web_driver_task.Draft">
                 <methods>
                     <include name="checkDraftDisappearedFromFolder"/>
+                </methods>
+            </class>
+        </classes>
+    </test>-->
+    <test name="CheckSend" preserve-order="true">
+        <classes>
+            <class name="com.epam.at.web_driver_task.MailSend">
+                <methods>
+                    <include name="checkMailPresentInSendFolder"/>
+                    <exclude name="sendMailAndVerifySuccessSend"/>
                 </methods>
             </class>
         </classes>
