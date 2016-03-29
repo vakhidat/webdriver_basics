@@ -31,7 +31,7 @@
             </class>
         </classes>
     </test>
-    <!--<test name="DraftDisappears">
+    <test name="DraftDisappears">
         <classes>
             <class name="com.epam.at.web_driver_task.Draft">
                 <methods>
@@ -39,7 +39,7 @@
                 </methods>
             </class>
         </classes>
-    </test>-->
+    </test>
     <test name="CheckSend" preserve-order="true">
         <classes>
             <class name="com.epam.at.web_driver_task.MailSend">

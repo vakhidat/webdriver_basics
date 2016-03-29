@@ -39,12 +39,13 @@ public class Draft extends MailScenario {
     }
 
     @Test(priority = 1)
-    public void checkDraftIsPresentInDraftFolder() {
+    public void checkDraftIsPresentInDraftFolder() throws InterruptedException {
         Wait<WebDriver> wait = new FluentWait<>(driver)
                 .withTimeout(5, TimeUnit.SECONDS)
                 .pollingEvery(1, TimeUnit.SECONDS);
         wait.until(webDriver -> driver.getCurrentUrl().endsWith("#inbox"));
-        driver.get(driver.getCurrentUrl().replace("#inbox", "#draft"));
+        String[] url = driver.getCurrentUrl().split("#");
+        driver.get(url[0] + "#draft");
         Assert.assertTrue(driver.findElement(By.xpath("//div[@class=\"block-messages-wrap\"]/div[@class=\"b-messages\"]/div[1]")) != null);
     }
 
@@ -57,6 +58,8 @@ public class Draft extends MailScenario {
 
     @Test
     public void checkDraftDisappearedFromFolder() {
+        String[] url = driver.getCurrentUrl().split("#");
+        driver.get(url[0] + "#draft");
         String draftEmptyMessageActual = driver
                 .findElement(By.xpath("//div[@class=\"b-messages\"]/descendant::div[@class=\"b-messages__placeholder-item\"][1]"))
                 .getText();
