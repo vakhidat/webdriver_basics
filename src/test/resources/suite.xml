@@ -1,12 +1,38 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="YandexMailCheck">
-    <test name="MailScenario" parallel="false" preserve-order="true">
+<suite name="YandexMailCheck" parallel="false">
+    <test name="Authorisation" parallel="false" preserve-order="true">
         <classes>
-            <class name="com.epam.at.web_driver_task.Authorisation"/>
-            <class name="com.epam.at.web_driver_task.Draft">
-
+            <class name="com.epam.at.web_driver_task.Authorisation">
+                <methods>
+                    <include name="loginSuccessIfMailAndPasswordAreCorrect"/>
+                </methods>
             </class>
+        </classes>
+    </test>
+    <test name="DraftCreation" preserve-order="true">
+        <classes>
+            <class name="com.epam.at.web_driver_task.Draft">
+                <methods>
+                    <include name="draftCreateWithContentAndSave"/>
+                    <include name="checkDraftIsPresentInDraftFolder"/>
+                    <include name="checkDraftContent"/>
+                    <exclude name="checkDraftDisappearedFromFolder"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+    <test name="MailSend" preserve-order="true">
+        <classes>
             <class name="com.epam.at.web_driver_task.MailSend"/>
+        </classes>
+    </test>
+    <test name="DraftDisappears">
+        <classes>
+            <class name="com.epam.at.web_driver_task.Draft">
+                <methods>
+                    <include name="checkDraftDisappearedFromFolder"/>
+                </methods>
+            </class>
         </classes>
     </test>
 </suite>
