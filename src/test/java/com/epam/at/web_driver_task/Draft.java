@@ -2,7 +2,6 @@ package com.epam.at.web_driver_task;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.Wait;
 import org.testng.Assert;
@@ -12,6 +11,7 @@ import org.testng.annotations.Test;
 import java.util.concurrent.TimeUnit;
 
 public class Draft extends MailScenario {
+    public static final String DRAFT_EMPTY_MESSAGE = "В папке «Черновики» нет писем.";
     private String to;
     private String subject;
     private String message;
@@ -49,18 +49,17 @@ public class Draft extends MailScenario {
     }
 
 
-    @Test(priority = 2, enabled = false)
+    @Test(priority = 2) //TODO: fix it
     public void checkDraftContent() throws InterruptedException {
         driver.findElement(By.xpath("//div[@class=\"block-messages-wrap\"]/div[@class=\"b-messages\"]/div[1]")).click();
-        Thread.sleep(5000);
-        String toActual = driver.findElement(By.xpath("//div[@class=\"b-mail-input__yabbles\"]/div/span/span[last()]")).getText();
-        String subjectActual = driver.findElement(By.xpath("//div[@class=\"b-input\"]/descendant::div")).getText();
 
-        WebElement element = driver.findElement(By.xpath("//table[@id=\"compose-send_tbl\"]/descendant::tr[@class=\"mceLast\"]/td/iframe"));
-        element.click();
-        String messageActual = element.findElement(By.xpath("//*[@id='tinymce']/div[1]")).getText();
-        System.out.println(toActual);
-        System.out.println(subjectActual);
-        System.out.println(messageActual);
+    }
+
+    @Test
+    public void checkDraftDisappearedFromFolder() {
+        String draftEmptyMessageActual = driver
+                .findElement(By.xpath("//div[@class=\"b-messages\"]/descendant::div[@class=\"b-messages__placeholder-item\"][1]"))
+                .getText();
+        Assert.assertEquals(draftEmptyMessageActual, DRAFT_EMPTY_MESSAGE);
     }
 }
