@@ -19,7 +19,7 @@ public class Authorisation extends MailScenario {
 
     @Test
     public void loginSuccessIfMailAndPasswordAreCorrect() {
-        driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
         driver.findElement(By.xpath("//input[@name=\"login\"]")).sendKeys(login);
         driver.findElement(By.xpath("//input[@name=\"passwd\"]")).sendKeys(password);
         driver.findElement(By.xpath("//div[@class=\"domik2__submit\"]")).click();
