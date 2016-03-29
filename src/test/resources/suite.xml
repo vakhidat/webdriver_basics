@@ -44,7 +44,7 @@
         <classes>
             <class name="com.epam.at.web_driver_task.MailSend">
                 <methods>
-                    <include name="checkMailPresentInSendFolder"/>
+                    <include name="checkMailPresentInSentFolder"/>
                     <exclude name="sendMailAndVerifySuccessSend"/>
                 </methods>
             </class>

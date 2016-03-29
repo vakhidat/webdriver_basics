@@ -39,7 +39,7 @@ public class Draft extends MailScenario {
     }
 
     @Test(priority = 1)
-    public void checkDraftIsPresentInDraftFolder() throws InterruptedException {
+    public void checkDraftIsPresentInDraftFolder() {
         Wait<WebDriver> wait = new FluentWait<>(driver)
                 .withTimeout(5, TimeUnit.SECONDS)
                 .pollingEvery(1, TimeUnit.SECONDS);
