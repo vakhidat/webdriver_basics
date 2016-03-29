@@ -4,9 +4,7 @@
         <classes>
             <class name="com.epam.at.web_driver_task.Authorisation"/>
             <class name="com.epam.at.web_driver_task.Draft">
-                <methods>
-                    <exclude name="checkDraftContent"/>
-                </methods>
+
             </class>
             <class name="com.epam.at.web_driver_task.MailSend"/>
         </classes>
