@@ -10,15 +10,16 @@ import java.util.concurrent.TimeUnit;
 
 public class MailSend extends MailScenario {
     public static final String MAIL_SEND_MESSAGE = "Письмо успешно отправлено.";
+    public static final String DONE_SUFFICS = "#done";
 
     @Test
-    public void sendMailAndVerifySuccessSend() {
+    public void sendMailFromDraftAndVerifySuccessSend() {
         Assert.assertNotNull(driver.findElement(By.xpath("//div[@class=\"b-mail-input__yabbles\"]/div/span/span[last()]")));
         driver.findElement(By.xpath("//table[@class=\"b-compose-head\"]/descendant::tr/td/descendant::span/button")).click();
         Wait<WebDriver> wait = new FluentWait<>(driver)
                 .withTimeout(5, TimeUnit.SECONDS)
                 .pollingEvery(1, TimeUnit.SECONDS);
-        wait.until(webDriver -> driver.getCurrentUrl().endsWith("#done"));
+        wait.until(webDriver -> driver.getCurrentUrl().endsWith(DONE_SUFFICS));
         Assert.assertEquals(driver
                 .findElement(By.xpath("//div[@class=\"block-compose-done\"]/descendant::div[@class=\"b-done-title\"]"))
                 .getText(), MAIL_SEND_MESSAGE);
@@ -26,7 +27,7 @@ public class MailSend extends MailScenario {
 
     @Test
     public void checkMailPresentInSentFolder() {
-        driver.findElement(By.xpath("//a[@href = \"#sent\"]")).click();
+        mailbox.goToSentFolder();
         Assert.assertNotNull(driver.findElement(By.xpath("//div[@data-action=\"mail.message.show-or-select\"]")));
     }
 }

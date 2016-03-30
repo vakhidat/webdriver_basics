@@ -25,7 +25,7 @@
         <classes>
             <class name="com.epam.at.web_driver_task.test.MailSend">
                 <methods>
-                    <include name="sendMailAndVerifySuccessSend"/>
+                    <include name="sendMailFromDraftAndVerifySuccessSend"/>
                     <exclude name="checkMailPresentInSendFolder"/>
                 </methods>
             </class>
@@ -45,7 +45,7 @@
             <class name="com.epam.at.web_driver_task.test.MailSend">
                 <methods>
                     <include name="checkMailPresentInSentFolder"/>
-                    <exclude name="sendMailAndVerifySuccessSend"/>
+                    <exclude name="sendMailFromDraftAndVerifySuccessSend"/>
                 </methods>
             </class>
         </classes>
