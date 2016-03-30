@@ -26,7 +26,6 @@ public class MailSend extends MailScenario {
 
     @Test
     public void checkMailPresentInSentFolder() {
-        mailbox.goToSentFolder();
-        Assert.assertNotNull(driver.findElement(By.xpath("//div[@data-action=\"mail.message.show-or-select\"]")));
+        Assert.assertNotNull(mailbox.goToSentFolder().getSentMessageDiv());
     }
 }

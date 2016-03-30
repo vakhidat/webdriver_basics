@@ -24,8 +24,9 @@ public class Mailbox {
         PageFactory.initElements(this.driver, this);
     }
 
-    public void goToSentFolder() {
+    public SentFolder goToSentFolder() {
         sentFolderLink.click();
+        return new SentFolder(driver);
     }
 
     public void goToComposeNewEmailPage() {
