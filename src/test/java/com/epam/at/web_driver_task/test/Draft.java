@@ -26,8 +26,7 @@ public class Draft extends MailScenario {
 
     @Test(priority = 0)
     public void draftCreateWithContentAndReturnToInbox() {
-        mailbox.goToComposeNewEmailPage();
-        draftPage.writeDraftAndSaveIt(to, subject, message);
+        mailbox.goToComposeNewEmailPage().writeMessageAndSaveItAsDraft(to, subject, message);
         Wait<WebDriver> wait = new FluentWait<>(driver)
                 .withTimeout(5, TimeUnit.SECONDS)
                 .pollingEvery(1, TimeUnit.SECONDS);

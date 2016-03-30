@@ -29,8 +29,9 @@ public class Mailbox {
         return new SentFolder(driver);
     }
 
-    public void goToComposeNewEmailPage() {
+    public ComposeMail goToComposeNewEmailPage() {
         composeNewEmailLink.click();
+        return new ComposeMail(driver);
     }
 
     public void goToInboxPage() {
