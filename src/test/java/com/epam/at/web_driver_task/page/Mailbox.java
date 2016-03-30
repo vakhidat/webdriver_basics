@@ -16,6 +16,8 @@ public class Mailbox {
     private WebElement composeNewEmailLink;
     @FindBy(xpath = "//a[@href = \"#sent\"]")
     private WebElement sentFolderLink;
+    @FindBy(xpath = "//a[@href=\"#inbox\"]")
+    private WebElement indoxLink;
 
     public Mailbox(WebDriver driver) {
         this.driver = driver;
@@ -26,8 +28,12 @@ public class Mailbox {
         sentFolderLink.click();
     }
 
-    public void getPageToComposeNewEmail() {
+    public void goToComposeNewEmailPage() {
         composeNewEmailLink.click();
+    }
+
+    public void goToInboxPage() {
+        indoxLink.click();
     }
 
     public void logout() {

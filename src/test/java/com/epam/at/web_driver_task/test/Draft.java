@@ -27,13 +27,9 @@ public class Draft extends MailScenario {
     }
 
     @Test(priority = 0)
-    public void draftCreateWithContentAndSave() {
-        mailbox.getPageToComposeNewEmail();
-        driver.findElement(By.xpath("//div[@class=\"b-mail-input__yabbles\"]/div/input")).sendKeys(to);
-        driver.findElement(By.xpath("id(\"compose-subj\")")).sendKeys(subject);
-        driver.findElement(By.xpath("id(\"compose-send_ifr\")")).sendKeys(message);
-        driver.findElement(By.xpath("//a[@href=\"#inbox\"]")).click();
-        driver.findElement(By.xpath("//div[@class=\"b-popup__confirm\"]/button")).click();
+    public void draftCreateWithContentAndReturnToInbox() {
+        mailbox.goToComposeNewEmailPage();
+        draftPage.writeDraftAndSaveIt(to, subject, message);
         Wait<WebDriver> wait = new FluentWait<>(driver)
                 .withTimeout(5, TimeUnit.SECONDS)
                 .pollingEvery(1, TimeUnit.SECONDS);

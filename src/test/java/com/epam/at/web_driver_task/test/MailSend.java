@@ -15,7 +15,7 @@ public class MailSend extends MailScenario {
     @Test
     public void sendMailFromDraftAndVerifySuccessSend() {
         Assert.assertNotNull(driver.findElement(By.xpath("//div[@class=\"b-mail-input__yabbles\"]/div/span/span[last()]")));
-        driver.findElement(By.xpath("//table[@class=\"b-compose-head\"]/descendant::tr/td/descendant::span/button")).click();
+        draftPage.sendMail();
         Wait<WebDriver> wait = new FluentWait<>(driver)
                 .withTimeout(5, TimeUnit.SECONDS)
                 .pollingEvery(1, TimeUnit.SECONDS);
