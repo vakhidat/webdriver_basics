@@ -1,22 +1,24 @@
 package com.epam.at.web_driver_task;
 
+import com.epam.at.web_driver_task.page.Main;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
 
 public class MailScenario {
-    protected WebDriver driver = WebDriverFactory.firefoxInstance();
+    protected WebDriver driver = WebDriverFactory.firefoxDriver();
     private static final String YANDEX_URL = "https://www.yandex.kz/";
 
     @BeforeSuite(alwaysRun = true)
     public static void startFirefox() {
-        WebDriverFactory.firefoxInstance().get(YANDEX_URL);
+        Main mainPage = new Main(WebDriverFactory.firefoxDriver());
+        mainPage.getMainYandexPage();
     }
 
     @AfterSuite(alwaysRun = true, dependsOnMethods = "logout")
     public static void quitFirefox() {
-        WebDriverFactory.firefoxInstance().close();
+        WebDriverFactory.firefoxDriver().close();
     }
 
     @AfterSuite

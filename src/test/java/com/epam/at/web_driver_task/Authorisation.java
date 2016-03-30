@@ -1,6 +1,6 @@
 package com.epam.at.web_driver_task;
 
-import org.openqa.selenium.By;
+import com.epam.at.web_driver_task.page.Main;
 import org.testng.Assert;
 import org.testng.annotations.Factory;
 import org.testng.annotations.Test;
@@ -8,6 +8,7 @@ import org.testng.annotations.Test;
 import java.util.concurrent.TimeUnit;
 
 public class Authorisation extends MailScenario {
+    public static final String YANDEX_MAIL_URL_FRAGMENT = "https://mail.yandex.kz/?ncrnd=";
     private String login;
     private String password;
 
@@ -20,9 +21,8 @@ public class Authorisation extends MailScenario {
     @Test
     public void loginSuccessIfMailAndPasswordAreCorrect() {
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
-        driver.findElement(By.xpath("//input[@name=\"login\"]")).sendKeys(login);
-        driver.findElement(By.xpath("//input[@name=\"passwd\"]")).sendKeys(password);
-        driver.findElement(By.xpath("//div[@class=\"domik2__submit\"]")).click();
-        Assert.assertTrue(driver.getCurrentUrl().startsWith("https://mail.yandex.kz/?ncrnd="));
+        Main mainPage = new Main(driver);
+        mainPage.login(login, password);
+        Assert.assertTrue(driver.getCurrentUrl().startsWith(YANDEX_MAIL_URL_FRAGMENT));
     }
 }
