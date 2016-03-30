@@ -1,5 +1,6 @@
-package com.epam.at.web_driver_task;
+package com.epam.at.web_driver_task.test;
 
+import com.epam.at.web_driver_task.MailDataProvider;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.FluentWait;

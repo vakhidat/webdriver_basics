@@ -1,5 +1,6 @@
-package com.epam.at.web_driver_task;
+package com.epam.at.web_driver_task.test;
 
+import com.epam.at.web_driver_task.MailDataProvider;
 import com.epam.at.web_driver_task.page.Main;
 import org.testng.Assert;
 import org.testng.annotations.Factory;

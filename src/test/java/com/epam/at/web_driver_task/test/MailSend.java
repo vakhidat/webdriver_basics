@@ -1,4 +1,4 @@
-package com.epam.at.web_driver_task;
+package com.epam.at.web_driver_task.test;
 
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.FluentWait;
