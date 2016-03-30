@@ -12,9 +12,7 @@ import org.testng.annotations.Test;
 import java.util.concurrent.TimeUnit;
 
 public class Draft extends MailScenario {
-    public static final String DRAFT_EMPTY_MESSAGE = "В папке «Черновики» нет писем.";
     public static final String INBOX_SUFFIX = "#inbox";
-    public static final String DRAFT_SUFFIX = "#draft";
     private String to;
     private String subject;
     private String message;
@@ -42,24 +40,20 @@ public class Draft extends MailScenario {
                 .withTimeout(5, TimeUnit.SECONDS)
                 .pollingEvery(1, TimeUnit.SECONDS);
         wait.until(webDriver -> driver.getCurrentUrl().endsWith(INBOX_SUFFIX));
-        String[] url = driver.getCurrentUrl().split("#");
-        driver.get(url[0] + DRAFT_SUFFIX);
-        Assert.assertNotNull(driver.findElement(By.xpath("//div[@class=\"block-messages-wrap\"]/div[@class=\"b-messages\"]/div[1]")));
+        draftFolder.draftFolderForceGo();
+        Assert.assertNotNull(draftFolder.getDraftFirstInList());
     }
 
 
     @Test(priority = 2)
     public void checkDraftContent() throws InterruptedException {
-        driver.findElement(By.xpath("//div[@class=\"block-messages-wrap\"]/div[@class=\"b-messages\"]/div[1]")).click();
+        draftFolder.goToFirstDraftInFolder();
+        Assert.assertNotNull(driver.findElement(By.xpath("//div[@class=\"b-mail-input__yabbles\"]/div/span/span[last()]")));
     }
 
     @Test
     public void checkDraftDisappearedFromFolder() {
-        String[] url = driver.getCurrentUrl().split("#");
-        driver.get(url[0] + DRAFT_SUFFIX);
-        String draftEmptyMessageActual = driver
-                .findElement(By.xpath("//div[@class=\"b-messages\"]/descendant::div[@class=\"b-messages__placeholder-item\"][1]"))
-                .getText();
-        Assert.assertEquals(draftEmptyMessageActual, DRAFT_EMPTY_MESSAGE);
+        draftFolder.draftFolderForceGo();
+        Assert.assertNotNull(draftFolder.getEmptyFolderDiv());
     }
 }

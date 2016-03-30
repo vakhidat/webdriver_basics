@@ -14,7 +14,6 @@ public class MailSend extends MailScenario {
 
     @Test
     public void sendMailFromDraftAndVerifySuccessSend() {
-        Assert.assertNotNull(driver.findElement(By.xpath("//div[@class=\"b-mail-input__yabbles\"]/div/span/span[last()]")));
         draftPage.sendMail();
         Wait<WebDriver> wait = new FluentWait<>(driver)
                 .withTimeout(5, TimeUnit.SECONDS)

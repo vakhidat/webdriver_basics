@@ -1,6 +1,7 @@
 package com.epam.at.web_driver_task.test;
 
 import com.epam.at.web_driver_task.WebDriverFactory;
+import com.epam.at.web_driver_task.page.DraftFolder;
 import com.epam.at.web_driver_task.page.DraftPage;
 import com.epam.at.web_driver_task.page.Mailbox;
 import com.epam.at.web_driver_task.page.Main;
@@ -15,7 +16,7 @@ public abstract class MailScenario {
     protected static Main mainPage = new Main(driver);
     protected static Mailbox mailbox = new Mailbox(driver);
     protected static DraftPage draftPage = new DraftPage(driver);
-    private static final String YANDEX_URL = "https://www.yandex.kz/";
+    protected static DraftFolder draftFolder = new DraftFolder(driver);
 
     @BeforeSuite(alwaysRun = true)
     public static void startFirefox() {
