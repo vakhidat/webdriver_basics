@@ -7,6 +7,7 @@ import org.openqa.selenium.support.PageFactory;
 
 public class Mailbox {
     public static final String YANDEX_MAIL_URL_FRAGMENT = "https://mail.yandex.kz/?ncrnd=";
+    public static final String DRAFT_SUFFIX = "#draft";
     private WebDriver driver;
 
     @FindBy(xpath = "//a[@id='nb-1']")
@@ -38,6 +39,12 @@ public class Mailbox {
     public Inbox goToInboxPage() {
         indoxLink.click();
         return new Inbox(driver);
+    }
+
+    public DraftFolder draftFolderForceGo() {
+        String[] url = driver.getCurrentUrl().split("#");
+        driver.get(url[0] + DRAFT_SUFFIX);
+        return new DraftFolder(driver);
     }
 
     public Main logout() {

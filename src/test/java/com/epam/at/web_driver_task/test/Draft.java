@@ -4,7 +4,6 @@ import com.epam.at.web_driver_task.MailDataProvider;
 import com.epam.at.web_driver_task.page.DraftFolder;
 import com.epam.at.web_driver_task.page.DraftPage;
 import com.epam.at.web_driver_task.page.Inbox;
-import com.epam.at.web_driver_task.page.Mailbox;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.Wait;
@@ -28,7 +27,7 @@ public class Draft extends MailScenario {
 
     @Test(priority = 0)
     public void draftCreateWithContentAndReturnToInbox() {
-        new Mailbox(driver).goToComposeNewEmailPage().writeMessageAndSaveItAsDraft(to, subject, message);
+        mailbox.goToComposeNewEmailPage().writeMessageAndSaveItAsDraft(to, subject, message);
         Wait<WebDriver> wait = new FluentWait<>(driver)
                 .withTimeout(5, TimeUnit.SECONDS)
                 .pollingEvery(1, TimeUnit.SECONDS);
@@ -41,23 +40,21 @@ public class Draft extends MailScenario {
                 .withTimeout(5, TimeUnit.SECONDS)
                 .pollingEvery(1, TimeUnit.SECONDS);
         wait.until(webDriver -> driver.getCurrentUrl().endsWith(Inbox.SUFFIX));
-        DraftFolder draftFolder = new DraftFolder(driver);
-        draftFolder.draftFolderForceGo();
+        DraftFolder draftFolder = mailbox.draftFolderForceGo();
         Assert.assertNotNull(draftFolder.getDraftFirstInList());
     }
 
 
     @Test(priority = 2)
     public void checkDraftContent() {
-        DraftFolder draftFolder = new DraftFolder(driver);
+        DraftFolder draftFolder = mailbox.draftFolderForceGo();
         DraftPage draftPage = draftFolder.goToFirstDraftInFolder();
         draftPage.getDraftRecipientEmailText();
     }
 
     @Test
     public void checkDraftDisappearedFromFolder() {
-        DraftFolder draftFolder = new DraftFolder(driver);
-        draftFolder.draftFolderForceGo();
+        DraftFolder draftFolder = mailbox.draftFolderForceGo();
         draftFolder.getEmptyFolderDiv().getText();
         Assert.assertNotNull(draftFolder.getEmptyFolderDiv());
     }
