@@ -8,6 +8,12 @@ import org.openqa.selenium.support.PageFactory;
 public class DraftPage {
     private WebDriver driver;
 
+    @FindBy(xpath = "//div[@class=\"b-mail-input__yabbles\"]/div/input")
+    private WebElement draftRecipientEmail;
+    @FindBy(xpath = "id(\"compose-subj\")")
+    private WebElement draftSubject;
+    @FindBy(xpath = "id(\"compose-send_ifr\")")
+    private WebElement draftMessage;
     @FindBy(xpath = "//table[@class=\"b-compose-head\"]/descendant::tr/td/descendant::span/button")
     private WebElement sendMailButton;
 
@@ -18,5 +24,17 @@ public class DraftPage {
 
     public void sendMail() {
         sendMailButton.click();
+    }
+
+    public String getDraftSubjectText() {
+        return draftSubject.getText();
+    }
+
+    public String  getDraftRecipientEmailText() {
+        return draftRecipientEmail.getText();
+    }
+
+    public String  getDraftMessageText() {
+        return draftMessage.getText();
     }
 }

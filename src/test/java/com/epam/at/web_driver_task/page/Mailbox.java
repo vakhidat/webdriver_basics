@@ -6,6 +6,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 public class Mailbox {
+    public static final String YANDEX_MAIL_URL_FRAGMENT = "https://mail.yandex.kz/?ncrnd=";
     private WebDriver driver;
 
     @FindBy(xpath = "//a[@id='nb-1']")

@@ -6,7 +6,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 public class Main {
-    private static final String BASE_URL = "https://www.yandex.kz/";
+    public static final String YANDEX_URL = "https://www.yandex.kz/";
     private WebDriver driver;
 
     @FindBy(xpath = "//input[@name=\"login\"]")
@@ -19,10 +19,6 @@ public class Main {
     public Main(WebDriver driver) {
         this.driver = driver;
         PageFactory.initElements(this.driver, this);
-    }
-
-    public void getMainYandexPage() {
-        driver.get(BASE_URL);
     }
 
     public void login(String login, String password) {

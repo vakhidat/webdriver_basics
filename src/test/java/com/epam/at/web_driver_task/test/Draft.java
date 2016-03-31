@@ -1,7 +1,10 @@
 package com.epam.at.web_driver_task.test;
 
 import com.epam.at.web_driver_task.MailDataProvider;
-import org.openqa.selenium.By;
+import com.epam.at.web_driver_task.page.DraftFolder;
+import com.epam.at.web_driver_task.page.DraftPage;
+import com.epam.at.web_driver_task.page.Inbox;
+import com.epam.at.web_driver_task.page.Mailbox;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.Wait;
@@ -12,7 +15,6 @@ import org.testng.annotations.Test;
 import java.util.concurrent.TimeUnit;
 
 public class Draft extends MailScenario {
-    public static final String INBOX_SUFFIX = "#inbox";
     private String to;
     private String subject;
     private String message;
@@ -26,11 +28,11 @@ public class Draft extends MailScenario {
 
     @Test(priority = 0)
     public void draftCreateWithContentAndReturnToInbox() {
-        mailbox.goToComposeNewEmailPage().writeMessageAndSaveItAsDraft(to, subject, message);
+        new Mailbox(driver).goToComposeNewEmailPage().writeMessageAndSaveItAsDraft(to, subject, message);
         Wait<WebDriver> wait = new FluentWait<>(driver)
                 .withTimeout(5, TimeUnit.SECONDS)
                 .pollingEvery(1, TimeUnit.SECONDS);
-        wait.until(webDriver -> driver.getCurrentUrl().endsWith(INBOX_SUFFIX));
+        wait.until(webDriver -> driver.getCurrentUrl().endsWith(Inbox.SUFFIX));
     }
 
     @Test(priority = 1)
@@ -38,21 +40,25 @@ public class Draft extends MailScenario {
         Wait<WebDriver> wait = new FluentWait<>(driver)
                 .withTimeout(5, TimeUnit.SECONDS)
                 .pollingEvery(1, TimeUnit.SECONDS);
-        wait.until(webDriver -> driver.getCurrentUrl().endsWith(INBOX_SUFFIX));
+        wait.until(webDriver -> driver.getCurrentUrl().endsWith(Inbox.SUFFIX));
+        DraftFolder draftFolder = new DraftFolder(driver);
         draftFolder.draftFolderForceGo();
         Assert.assertNotNull(draftFolder.getDraftFirstInList());
     }
 
 
     @Test(priority = 2)
-    public void checkDraftContent() throws InterruptedException {
-        draftFolder.goToFirstDraftInFolder();
-        Assert.assertNotNull(driver.findElement(By.xpath("//div[@class=\"b-mail-input__yabbles\"]/div/span/span[last()]")));
+    public void checkDraftContent() {
+        DraftFolder draftFolder = new DraftFolder(driver);
+        DraftPage draftPage = draftFolder.goToFirstDraftInFolder();
+        draftPage.getDraftRecipientEmailText();
     }
 
     @Test
     public void checkDraftDisappearedFromFolder() {
+        DraftFolder draftFolder = new DraftFolder(driver);
         draftFolder.draftFolderForceGo();
+        draftFolder.getEmptyFolderDiv().getText();
         Assert.assertNotNull(draftFolder.getEmptyFolderDiv());
     }
 }

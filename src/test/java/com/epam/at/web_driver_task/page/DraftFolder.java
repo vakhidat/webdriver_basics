@@ -10,7 +10,7 @@ public class DraftFolder {
     public static final String DRAFT_SUFFIX = "#draft";
     @FindBy(xpath = "//div[@class=\"b-messages\"]/descendant::div[@class=\"b-messages__placeholder-item\"][1]")
     private WebElement emptyFolderDiv;
-    @FindBy(xpath = "//div[@class=\"block-messages-wrap\"]/div[@class=\"b-messages\"]/div[1]")
+    @FindBy(xpath = "//div[@class=\"block-messages-wrap\"]/div[@class=\"b-messages\"]/descendant::div[@data-action=\"mail.message.show-or-select\"]")
     private WebElement draftFirstInList;
 
     public DraftFolder(WebDriver driver) {
