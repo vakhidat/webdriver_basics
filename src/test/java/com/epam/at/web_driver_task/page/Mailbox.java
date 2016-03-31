@@ -35,12 +35,14 @@ public class Mailbox {
         return new ComposeMail(driver);
     }
 
-    public void goToInboxPage() {
+    public Inbox goToInboxPage() {
         indoxLink.click();
+        return new Inbox(driver);
     }
 
-    public void logout() {
+    public Main logout() {
         userDropdownLink.click();
         logoutLink.click();
+        return new Main(driver);
     }
 }
