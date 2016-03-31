@@ -11,7 +11,7 @@ public class WebDriverFactory {
         public static final WebDriver FIREFOX_INSTANCE = new FirefoxDriver();
     }
 
-    public static WebDriver firefoxInstance() {
+    public static WebDriver firefoxDriver() {
         return WebDriverInstanceHolder.FIREFOX_INSTANCE;
     }
 }

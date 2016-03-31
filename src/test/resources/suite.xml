@@ -2,7 +2,7 @@
 <suite name="YandexMailCheck" parallel="false">
     <test name="Authorisation" parallel="false" preserve-order="true">
         <classes>
-            <class name="com.epam.at.web_driver_task.Authorisation">
+            <class name="com.epam.at.web_driver_task.test.Authorisation">
                 <methods>
                     <include name="loginSuccessIfMailAndPasswordAreCorrect"/>
                 </methods>
@@ -11,29 +11,27 @@
     </test>
     <test name="DraftCreation" preserve-order="true">
         <classes>
-            <class name="com.epam.at.web_driver_task.Draft">
+            <class name="com.epam.at.web_driver_task.test.Draft">
                 <methods>
-                    <include name="draftCreateWithContentAndSave"/>
+                    <include name="draftCreateWithContentAndReturnToInbox"/>
                     <include name="checkDraftIsPresentInDraftFolder"/>
                     <include name="checkDraftContent"/>
-                    <exclude name="checkDraftDisappearedFromFolder"/>
                 </methods>
             </class>
         </classes>
     </test>
     <test name="MailSend" preserve-order="true">
         <classes>
-            <class name="com.epam.at.web_driver_task.MailSend">
+            <class name="com.epam.at.web_driver_task.test.MailSend">
                 <methods>
-                    <include name="sendMailAndVerifySuccessSend"/>
-                    <exclude name="checkMailPresentInSendFolder"/>
+                    <include name="sendMailFromDraftAndVerifySuccessSend"/>
                 </methods>
             </class>
         </classes>
     </test>
     <test name="DraftDisappears">
         <classes>
-            <class name="com.epam.at.web_driver_task.Draft">
+            <class name="com.epam.at.web_driver_task.test.Draft">
                 <methods>
                     <include name="checkDraftDisappearedFromFolder"/>
                 </methods>
@@ -42,10 +40,9 @@
     </test>
     <test name="CheckSend" preserve-order="true">
         <classes>
-            <class name="com.epam.at.web_driver_task.MailSend">
+            <class name="com.epam.at.web_driver_task.test.MailSend">
                 <methods>
                     <include name="checkMailPresentInSentFolder"/>
-                    <exclude name="sendMailAndVerifySuccessSend"/>
                 </methods>
             </class>
         </classes>
