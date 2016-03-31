@@ -22,8 +22,9 @@ public class DraftPage {
         PageFactory.initElements(this.driver, this);
     }
 
-    public void sendMail() {
+    public MailSendSuccess sendMail() {
         sendMailButton.click();
+        return new MailSendSuccess(driver);
     }
 
     public String getDraftSubjectText() {

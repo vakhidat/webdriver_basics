@@ -7,7 +7,6 @@ import org.openqa.selenium.support.PageFactory;
 
 public class DraftFolder {
     private WebDriver driver;
-    public static final String DRAFT_SUFFIX = "#draft";
     @FindBy(xpath = "//div[@class=\"b-messages\"]/descendant::div[@class=\"b-messages__placeholder-item\"][1]")
     private WebElement emptyFolderDiv;
     @FindBy(xpath = "//div[@class=\"block-messages-wrap\"]/div[@class=\"b-messages\"]/descendant::div[@data-action=\"mail.message.show-or-select\"]")
@@ -16,11 +15,6 @@ public class DraftFolder {
     public DraftFolder(WebDriver driver) {
         this.driver = driver;
         PageFactory.initElements(this.driver, this);
-    }
-
-    public void draftFolderForceGo() {
-        String[] url = driver.getCurrentUrl().split("#");
-        driver.get(url[0] + DRAFT_SUFFIX);
     }
 
     public DraftPage goToFirstDraftInFolder() {

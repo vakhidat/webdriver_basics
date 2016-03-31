@@ -11,6 +11,7 @@ import static com.epam.at.web_driver_task.WebDriverFactory.firefoxDriver;
 
 public abstract class MailScenario {
     protected static WebDriver driver = WebDriverFactory.firefoxDriver();
+    protected static Mailbox mailbox = new Mailbox(driver);
 
     @BeforeSuite(alwaysRun = true)
     public static void startFirefox() {
@@ -24,7 +25,6 @@ public abstract class MailScenario {
 
     @AfterSuite
     public void logout() {
-        Mailbox mailbox = new Mailbox(driver);
         mailbox.logout();
     }
 }
