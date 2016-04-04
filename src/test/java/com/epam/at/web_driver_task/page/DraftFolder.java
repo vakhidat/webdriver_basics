@@ -9,8 +9,16 @@ public class DraftFolder {
     private WebDriver driver;
     @FindBy(xpath = "//div[@class=\"b-messages\"]/descendant::div[@class=\"b-messages__placeholder-item\"][1]")
     private WebElement emptyFolderDiv;
-    @FindBy(xpath = "//div[@class=\"block-messages-wrap\"]/div[@class=\"b-messages\"]/descendant::div[@data-action=\"mail.message.show-or-select\"]")
+    @FindBy(xpath = "//div[@data-action=\"mail.message.show-or-select\"]")
     private WebElement draftFirstInList;
+    @FindBy(xpath = "//span[@class=\"b-messages__message__left\"]/descendant::span[@class=\"b-messages__from\"]/descendant::span[@class=\"b-messages__from__text\"]")
+    private WebElement draftRecipientMail;
+
+    @FindBy(xpath = "//span[@class=\"b-messages__message__left\"]/descendant::span[@class=\"b-messages__firstline-wrapper\"]/descendant::span[@class=\"b-messages__subject\"]")
+    private WebElement draftRecipientSubject;
+
+    @FindBy(xpath = "//span[@class=\"b-messages__message__left\"]/descendant::span[@class=\"b-messages__firstline-wrapper\"]/descendant::span[@class=\"b-messages__firstline\"]")
+    private WebElement draftRecipientMessage;
 
     public DraftFolder(WebDriver driver) {
         this.driver = driver;
@@ -28,5 +36,17 @@ public class DraftFolder {
 
     public WebElement getDraftFirstInList() {
         return draftFirstInList;
+    }
+
+    public String getDraftRecipientMail() {
+        return draftRecipientMail.getAttribute("title");
+    }
+
+    public String getDraftRecipientSubject() {
+        return draftRecipientSubject.getAttribute("title");
+    }
+
+    public String getDraftRecipientMessage() {
+        return draftRecipientMessage.getAttribute("title");
     }
 }

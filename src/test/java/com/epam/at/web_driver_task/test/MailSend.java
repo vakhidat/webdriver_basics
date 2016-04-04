@@ -1,5 +1,6 @@
 package com.epam.at.web_driver_task.test;
 
+import com.epam.at.web_driver_task.page.DraftPage;
 import com.epam.at.web_driver_task.page.MailSendSuccess;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.FluentWait;
@@ -12,7 +13,9 @@ import java.util.concurrent.TimeUnit;
 public class MailSend extends MailScenario {
     @Test
     public void sendMailFromDraftAndVerifySuccessSend() throws InterruptedException {
-        MailSendSuccess mailSendSuccess = mailbox.draftFolderForceGo().goToFirstDraftInFolder().sendMail();
+        DraftPage draftPage = mailbox.draftFolderForceGo().goToFirstDraftInFolder();
+        Assert.assertTrue(draftPage.getDraftRecipientEmailText().equals(""));
+        MailSendSuccess mailSendSuccess = draftPage.sendMail();
         Wait<WebDriver> wait = new FluentWait<>(driver)
                 .withTimeout(5, TimeUnit.SECONDS)
                 .pollingEvery(1, TimeUnit.SECONDS);

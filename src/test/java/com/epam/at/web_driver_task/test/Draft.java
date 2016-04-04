@@ -2,7 +2,6 @@ package com.epam.at.web_driver_task.test;
 
 import com.epam.at.web_driver_task.MailDataProvider;
 import com.epam.at.web_driver_task.page.DraftFolder;
-import com.epam.at.web_driver_task.page.DraftPage;
 import com.epam.at.web_driver_task.page.Inbox;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.FluentWait;
@@ -48,8 +47,9 @@ public class Draft extends MailScenario {
     @Test(priority = 2)
     public void checkDraftContent() {
         DraftFolder draftFolder = mailbox.draftFolderForceGo();
-        DraftPage draftPage = draftFolder.goToFirstDraftInFolder();
-        draftPage.getDraftRecipientEmailText();
+        Assert.assertEquals(draftFolder.getDraftRecipientMail(), to);
+        Assert.assertEquals(draftFolder.getDraftRecipientSubject(), subject);
+        Assert.assertEquals(draftFolder.getDraftRecipientMessage(), message);
     }
 
     @Test
