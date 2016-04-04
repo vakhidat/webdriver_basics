@@ -5,7 +5,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-public class SentFolder extends Page{
+public class SentFolder extends MailPage {
     @FindBy(xpath = "//div[@data-action=\"mail.message.show-or-select\"]")
     private WebElement sentMessageDiv;
 

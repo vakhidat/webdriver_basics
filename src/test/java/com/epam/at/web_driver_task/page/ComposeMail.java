@@ -5,7 +5,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-public class ComposeMail extends Page {
+public class ComposeMail extends MailPage {
 
     @FindBy(xpath = "//div[@class=\"b-mail-input__yabbles\"]/div/input")
     private WebElement mailRecipientEmailInput;
@@ -25,8 +25,7 @@ public class ComposeMail extends Page {
         mailRecipientEmailInput.sendKeys(to);
         mailSubjectInput.sendKeys(subject);
         mailMessageInput.sendKeys(message);
-        Mailbox mailbox = new Mailbox(driver);
-        mailbox.goToInboxPage();
+        this.goToInboxPage();
         alertSaveConfirmation.click();
     }
 }

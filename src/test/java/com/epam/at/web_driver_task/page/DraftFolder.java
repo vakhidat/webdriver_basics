@@ -5,7 +5,9 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-public class DraftFolder extends Page {
+public class DraftFolder extends MailPage {
+    public static final String SUFFIX = "#draft";
+
     @FindBy(xpath = "//div[@class=\"b-messages\"]/descendant::div[@class=\"b-messages__placeholder-item\"][1]")
     private WebElement emptyFolderDiv;
     @FindBy(xpath = "//div[@data-action=\"mail.message.show-or-select\"]")
@@ -24,9 +26,9 @@ public class DraftFolder extends Page {
         PageFactory.initElements(this.driver, this);
     }
 
-    public DraftPage goToFirstDraftInFolder() {
+    public DraftMailPage goToFirstDraftInFolder() {
         draftFirstInList.click();
-        return new DraftPage(this.driver);
+        return new DraftMailPage(this.driver);
     }
 
     public WebElement getEmptyFolderDiv() {

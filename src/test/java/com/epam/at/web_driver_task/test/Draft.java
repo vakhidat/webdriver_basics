@@ -26,7 +26,7 @@ public class Draft extends MailScenario {
 
     @Test(priority = 0)
     public void draftCreateWithContentAndReturnToInbox() {
-        mailbox.goToComposeNewEmailPage().writeMessageAndSaveItAsDraft(to, subject, message);
+        mailPage.goToComposeNewEmailPage().writeMessageAndSaveItAsDraft(to, subject, message);
         Wait<WebDriver> wait = new FluentWait<>(driver)
                 .withTimeout(5, TimeUnit.SECONDS)
                 .pollingEvery(1, TimeUnit.SECONDS);
@@ -39,14 +39,14 @@ public class Draft extends MailScenario {
                 .withTimeout(5, TimeUnit.SECONDS)
                 .pollingEvery(1, TimeUnit.SECONDS);
         wait.until(webDriver -> driver.getCurrentUrl().endsWith(Inbox.SUFFIX));
-        DraftFolder draftFolder = mailbox.draftFolderForceGo();
+        DraftFolder draftFolder = mailPage.draftFolderForceGo();
         Assert.assertNotNull(draftFolder.getDraftFirstInList());
     }
 
 
     @Test(priority = 2)
     public void checkDraftContent() {
-        DraftFolder draftFolder = mailbox.draftFolderForceGo();
+        DraftFolder draftFolder = mailPage.draftFolderForceGo();
         Assert.assertEquals(draftFolder.getDraftRecipientMail(), to);
         Assert.assertEquals(draftFolder.getDraftRecipientSubject(), subject);
         Assert.assertEquals(draftFolder.getDraftRecipientMessage(), message);
@@ -54,7 +54,7 @@ public class Draft extends MailScenario {
 
     @Test
     public void checkDraftDisappearedFromFolder() {
-        DraftFolder draftFolder = mailbox.draftFolderForceGo();
+        DraftFolder draftFolder = mailPage.draftFolderForceGo();
         draftFolder.getEmptyFolderDiv().getText();
         Assert.assertNotNull(draftFolder.getEmptyFolderDiv());
     }

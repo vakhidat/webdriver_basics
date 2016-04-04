@@ -5,23 +5,24 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-public class Mailbox extends Page{
-    public static final String YANDEX_MAIL_URL_FRAGMENT = "https://mail.yandex.kz/?ncrnd=";
-    public static final String DRAFT_SUFFIX = "#draft";
+public abstract class MailPage {
+    public static final String YANDEX_MAILBOX_URL_FRAGMENT = "https://mail.yandex.kz/?ncrnd=";
 
-    @FindBy(xpath = "//a[@id='nb-1']")
-    private WebElement userDropdownLink;
-    @FindBy(xpath = "id(\"user-dropdown-popup\")/descendant::div[@class=\"b-mail-dropdown__item\"][6]/a")
-    private WebElement logoutLink;
+    protected WebDriver driver;
+
     @FindBy(xpath = "//a[@href=\"#compose\"]")
     private WebElement composeNewEmailLink;
     @FindBy(xpath = "//a[@href = \"#sent\"]")
     private WebElement sentFolderLink;
     @FindBy(xpath = "//a[@href=\"#inbox\"]")
-    private WebElement indoxLink;
+    private WebElement inboxLink;
+    @FindBy(xpath = "//a[@id='nb-1']")
+    private WebElement userDropdownLink;
+    @FindBy(xpath = "id(\"user-dropdown-popup\")/descendant::div[@class=\"b-mail-dropdown__item\"][6]/a")
+    private WebElement logoutLink;
 
-    public Mailbox(WebDriver driver) {
-        super(driver);
+    public MailPage(WebDriver driver) {
+        this.driver = driver;
         PageFactory.initElements(this.driver, this);
     }
 
@@ -36,13 +37,13 @@ public class Mailbox extends Page{
     }
 
     public Inbox goToInboxPage() {
-        indoxLink.click();
+        inboxLink.click();
         return new Inbox(driver);
     }
 
     public DraftFolder draftFolderForceGo() {
         String[] url = driver.getCurrentUrl().split("#");
-        driver.get(url[0] + DRAFT_SUFFIX);
+        driver.get(url[0] + DraftFolder.SUFFIX);
         return new DraftFolder(driver);
     }
 
