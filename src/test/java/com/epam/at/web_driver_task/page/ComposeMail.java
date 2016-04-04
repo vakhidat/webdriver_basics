@@ -5,8 +5,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-public class ComposeMail {
-    private WebDriver driver;
+public class ComposeMail extends Page {
 
     @FindBy(xpath = "//div[@class=\"b-mail-input__yabbles\"]/div/input")
     private WebElement mailRecipientEmailInput;
@@ -18,7 +17,7 @@ public class ComposeMail {
     private WebElement alertSaveConfirmation;
 
     public ComposeMail(WebDriver driver) {
-        this.driver = driver;
+        super(driver);
         PageFactory.initElements(this.driver, this);
     }
 

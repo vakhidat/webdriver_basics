@@ -5,9 +5,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-public class DraftPage {
-    private WebDriver driver;
-
+public class DraftPage extends Page {
     @FindBy(xpath = "//div[@class=\"b-mail-input__yabbles\"]/div/input")
     private WebElement draftRecipientEmail;
     @FindBy(xpath = "id(\"compose-subj\")")
@@ -18,7 +16,7 @@ public class DraftPage {
     private WebElement sendMailButton;
 
     public DraftPage(WebDriver driver) {
-        this.driver = driver;
+        super(driver);
         PageFactory.initElements(this.driver, this);
     }
 

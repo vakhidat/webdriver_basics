@@ -5,10 +5,9 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-public class Mailbox {
+public class Mailbox extends Page{
     public static final String YANDEX_MAIL_URL_FRAGMENT = "https://mail.yandex.kz/?ncrnd=";
     public static final String DRAFT_SUFFIX = "#draft";
-    private WebDriver driver;
 
     @FindBy(xpath = "//a[@id='nb-1']")
     private WebElement userDropdownLink;
@@ -22,7 +21,7 @@ public class Mailbox {
     private WebElement indoxLink;
 
     public Mailbox(WebDriver driver) {
-        this.driver = driver;
+        super(driver);
         PageFactory.initElements(this.driver, this);
     }
 

@@ -5,13 +5,12 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-public class SentFolder {
-    private WebDriver driver;
+public class SentFolder extends Page{
     @FindBy(xpath = "//div[@data-action=\"mail.message.show-or-select\"]")
     private WebElement sentMessageDiv;
 
     public SentFolder(WebDriver driver) {
-        this.driver = driver;
+        super(driver);
         PageFactory.initElements(this.driver, this);
     }
 

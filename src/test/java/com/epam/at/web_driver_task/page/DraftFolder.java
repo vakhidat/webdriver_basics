@@ -5,8 +5,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-public class DraftFolder {
-    private WebDriver driver;
+public class DraftFolder extends Page {
     @FindBy(xpath = "//div[@class=\"b-messages\"]/descendant::div[@class=\"b-messages__placeholder-item\"][1]")
     private WebElement emptyFolderDiv;
     @FindBy(xpath = "//div[@data-action=\"mail.message.show-or-select\"]")
@@ -21,7 +20,7 @@ public class DraftFolder {
     private WebElement draftRecipientMessage;
 
     public DraftFolder(WebDriver driver) {
-        this.driver = driver;
+        super(driver);
         PageFactory.initElements(this.driver, this);
     }
 

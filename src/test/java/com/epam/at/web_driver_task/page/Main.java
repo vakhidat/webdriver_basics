@@ -5,9 +5,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-public class Main {
+public class Main extends Page {
     public static final String YANDEX_URL = "https://www.yandex.kz/";
-    private WebDriver driver;
 
     @FindBy(xpath = "//input[@name=\"login\"]")
     private WebElement loginInput;
@@ -17,7 +16,7 @@ public class Main {
     private WebElement buttonLogIn;
 
     public Main(WebDriver driver) {
-        this.driver = driver;
+        super(driver);
         PageFactory.initElements(this.driver, this);
     }
 
