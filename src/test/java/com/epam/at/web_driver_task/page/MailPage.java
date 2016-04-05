@@ -2,6 +2,7 @@ package com.epam.at.web_driver_task.page;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
@@ -9,6 +10,7 @@ public abstract class MailPage {
     public static final String YANDEX_MAILBOX_URL_FRAGMENT = "https://mail.yandex.kz/?ncrnd=";
 
     protected WebDriver driver;
+    protected Actions actionsBuilder;
 
     @FindBy(xpath = "//a[@href=\"#compose\"]")
     private WebElement composeNewEmailLink;
@@ -23,11 +25,12 @@ public abstract class MailPage {
 
     public MailPage(WebDriver driver) {
         this.driver = driver;
+        this.actionsBuilder = new Actions(driver);
         PageFactory.initElements(this.driver, this);
     }
 
     public SentFolder goToSentFolder() {
-        sentFolderLink.click();
+        actionsBuilder.click(sentFolderLink).build().perform();
         return new SentFolder(driver);
     }
 
@@ -48,8 +51,7 @@ public abstract class MailPage {
     }
 
     public Main logout() {
-        userDropdownLink.click();
-        logoutLink.click();
+        actionsBuilder.click(userDropdownLink).click(logoutLink).build().perform();
         return new Main(driver);
     }
 }

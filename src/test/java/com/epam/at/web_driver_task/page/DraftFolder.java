@@ -26,9 +26,9 @@ public class DraftFolder extends MailPage {
         PageFactory.initElements(this.driver, this);
     }
 
-    public DraftMailPage goToFirstDraftInFolder() {
+    public DraftPage goToFirstDraftInFolder() {
         draftFirstInList.click();
-        return new DraftMailPage(this.driver);
+        return new DraftPage(this.driver);
     }
 
     public WebElement getEmptyFolderDiv() {

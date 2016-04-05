@@ -2,6 +2,7 @@ package com.epam.at.web_driver_task.page;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
@@ -9,6 +10,7 @@ public class Main {
     public static final String YANDEX_URL = "https://www.yandex.kz/";
 
     private WebDriver driver;
+    private Actions builder;
 
     @FindBy(xpath = "//input[@name=\"login\"]")
     private WebElement loginInput;
