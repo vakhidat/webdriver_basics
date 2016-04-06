@@ -3,6 +3,7 @@ package com.epam.at.web_driver_task.test;
 import com.epam.at.web_driver_task.MailDataProvider;
 import com.epam.at.web_driver_task.page.DraftFolder;
 import com.epam.at.web_driver_task.page.Inbox;
+import com.epam.at.web_driver_task.util.ReportUtil;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.Wait;
@@ -41,21 +42,28 @@ public class Draft extends MailScenario {
         wait.until(webDriver -> driver.getCurrentUrl().endsWith(Inbox.SUFFIX));
         DraftFolder draftFolder = mailPage.draftFolderForceGo();
         Assert.assertNotNull(draftFolder.getDraftFirstInList());
+        ReportUtil.highlightElement(driver, draftFolder.getDraftFirstInList());
     }
 
 
     @Test(priority = 2)
     public void checkDraftContent() {
         DraftFolder draftFolder = mailPage.draftFolderForceGo();
-        Assert.assertEquals(draftFolder.getDraftRecipientMail(), to);
-        Assert.assertEquals(draftFolder.getDraftRecipientSubject(), subject);
-        Assert.assertEquals(draftFolder.getDraftRecipientMessage(), message);
+        ReportUtil.highlightElement(driver, draftFolder.getDraftRecipientMail());
+        Assert.assertEquals(draftFolder.getDraftRecipientMailText(), to);
+
+        ReportUtil.highlightElement(driver, draftFolder.getDraftRecipientSubject());
+        Assert.assertEquals(draftFolder.getDraftRecipientSubjectText(), subject);
+
+        ReportUtil.highlightElement(driver, draftFolder.getDraftRecipientMessage());
+        Assert.assertEquals(draftFolder.getDraftRecipientMessageText(), message);
     }
 
     @Test
     public void checkDraftDisappearedFromFolder() {
         DraftFolder draftFolder = mailPage.draftFolderForceGo();
         draftFolder.getEmptyFolderDiv().getText();
+        ReportUtil.highlightElement(driver, draftFolder.getEmptyFolderDiv());
         Assert.assertNotNull(draftFolder.getEmptyFolderDiv());
     }
 }

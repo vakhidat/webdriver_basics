@@ -1,10 +1,12 @@
 package com.epam.at.web_driver_task.page;
 
+import lombok.Getter;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+@Getter
 public class DraftFolder extends MailPage {
     public static final String SUFFIX = "#draft";
 
@@ -39,15 +41,15 @@ public class DraftFolder extends MailPage {
         return draftFirstInList;
     }
 
-    public String getDraftRecipientMail() {
+    public String getDraftRecipientMailText() {
         return draftRecipientMail.getAttribute("title");
     }
 
-    public String getDraftRecipientSubject() {
+    public String getDraftRecipientSubjectText() {
         return draftRecipientSubject.getAttribute("title");
     }
 
-    public String getDraftRecipientMessage() {
+    public String getDraftRecipientMessageText() {
         return draftRecipientMessage.getAttribute("title");
     }
 }
