@@ -7,7 +7,7 @@ import org.openqa.selenium.support.PageFactory;
 
 public class ComposeMail extends MailPage {
 
-    @FindBy(xpath = "//div[@class=\"b-mail-input__yabbles\"]/div/input")
+    @FindBy(xpath = "//div[@class=\"b-mail-input__yabbles\"]/input")
     private WebElement mailRecipientEmailInput;
     @FindBy(xpath = "id(\"compose-subj\")")
     private WebElement mailSubjectInput;

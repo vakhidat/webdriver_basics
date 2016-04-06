@@ -12,8 +12,8 @@ import java.util.List;
 public class SuiteRunner {
     public static void main(String[] args) throws IOException, SAXException, ParserConfigurationException {
         TestNG tng = new TestNG(true);
-        final Parser parser = new Parser("src/test/resources/suite.xml");
-        final List<XmlSuite> suites = parser.parseToList();
+        Parser parser = new Parser("src/test/resources/suite.xml");
+        List<XmlSuite> suites = parser.parseToList();
         tng.setXmlSuites(suites);
         tng.run();
     }
