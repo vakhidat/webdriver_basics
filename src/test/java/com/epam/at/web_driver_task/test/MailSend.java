@@ -3,6 +3,7 @@ package com.epam.at.web_driver_task.test;
 import com.epam.at.web_driver_task.page.DraftPage;
 import com.epam.at.web_driver_task.page.MailSendSuccess;
 import com.epam.at.web_driver_task.util.ReportUtil;
+import lombok.extern.slf4j.Slf4j;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.FluentWait;
@@ -13,6 +14,7 @@ import org.testng.annotations.Test;
 
 import java.util.concurrent.TimeUnit;
 
+@Slf4j
 public class MailSend extends Base {
     @Test
     public void sendMailFromDraftAndVerifySuccessSend() throws InterruptedException {
@@ -24,6 +26,7 @@ public class MailSend extends Base {
                 .pollingEvery(1, TimeUnit.SECONDS);
         wait.until(webDriver -> driver.getCurrentUrl().endsWith(MailSendSuccess.DONE_PAGE_SUFFICS));
         Assert.assertEquals(mailSendSuccess.getMailSendSuccessfullyMessageText(), MailSendSuccess.MAIL_SEND_MESSAGE);
+        log.info("mail send");
     }
 
     @AfterTest(groups = "afterTestCheck")
@@ -32,5 +35,6 @@ public class MailSend extends Base {
 
         ReportUtil.highlightElement(driver, sentMessageDiv);
         Assert.assertNotNull(sentMessageDiv);
+        log.info("mail present in Sent folder");
     }
 }

@@ -11,8 +11,6 @@ import java.util.List;
 
 public class SuiteRunner {
     public static final String SUITE_XML = "src/test/resources/suite.xml";
-    public static final String BROWSERS_XML = "src/test/resources/browsers.xml";
-    private static final String HUB = "http://10.12.12.237:4444/wd/hub";
 
     public static void main(String[] args) throws IOException, SAXException, ParserConfigurationException {
         TestNG tng = new TestNG(true);
