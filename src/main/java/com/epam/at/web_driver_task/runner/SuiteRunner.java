@@ -1,4 +1,4 @@
-package com.epam.at.web_driver_task;
+package com.epam.at.web_driver_task.runner;
 
 import org.testng.TestNG;
 import org.testng.xml.Parser;

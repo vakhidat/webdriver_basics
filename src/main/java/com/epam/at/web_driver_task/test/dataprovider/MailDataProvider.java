@@ -1,4 +1,4 @@
-package com.epam.at.web_driver_task.dataprovider;
+package com.epam.at.web_driver_task.test.dataprovider;
 
 import com.epam.at.web_driver_task.model.entity.Mail;
 import com.epam.at.web_driver_task.model.entity.User;
