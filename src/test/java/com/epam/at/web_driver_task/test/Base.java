@@ -25,7 +25,7 @@ public class Base {
         mailPage = new Inbox(driver);
     }
 
-    @AfterTest(alwaysRun = true)
+    @AfterTest(alwaysRun = true, dependsOnGroups = "afterTestCheck")
     public static void quitBrowser() {
         driver.quit();
     }

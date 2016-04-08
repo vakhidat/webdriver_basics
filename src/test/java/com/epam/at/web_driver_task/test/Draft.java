@@ -51,8 +51,12 @@ public class Draft extends Base {
     @AfterTest(alwaysRun = true, groups = "afterTestCheck")
     public void checkDraftDisappearedFromFolder() {
         DraftFolder draftFolder = mailPage.draftFolderForceGo();
+        Wait<WebDriver> wait = new FluentWait<>(driver)
+                .withTimeout(10, TimeUnit.SECONDS)
+                .pollingEvery(1, TimeUnit.SECONDS);
+        wait.until(WebElement -> draftFolder.getEmptyFolderDiv());
+        Assert.assertNotNull(draftFolder.getEmptyFolderDiv());
         draftFolder.getEmptyFolderDiv().getText();
         ReportUtil.highlightElement(driver, draftFolder.getEmptyFolderDiv());
-        Assert.assertNotNull(draftFolder.getEmptyFolderDiv());
     }
 }

@@ -17,7 +17,7 @@ public class Authorisation extends Base {
         Assert.assertTrue(driver.getCurrentUrl().startsWith(MailPage.YANDEX_MAILBOX_URL_FRAGMENT));
     }
 
-    @AfterTest(dependsOnGroups = "afterTestCheck")
+    @AfterTest(alwaysRun = true, dependsOnGroups = "afterTestCheck")
     public void logout() {
         mailPage.logout();
     }
