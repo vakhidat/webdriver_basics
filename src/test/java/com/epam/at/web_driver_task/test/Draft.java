@@ -1,8 +1,9 @@
 package com.epam.at.web_driver_task.test;
 
+import com.epam.at.web_driver_task.business_object.Mail;
 import com.epam.at.web_driver_task.page.DraftFolder;
 import com.epam.at.web_driver_task.page.Inbox;
-import com.epam.at.web_driver_task.util.MailDataProvider;
+import com.epam.at.web_driver_task.dataprovider.MailDataProvider;
 import com.epam.at.web_driver_task.util.ReportUtil;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.FluentWait;
@@ -15,8 +16,8 @@ import java.util.concurrent.TimeUnit;
 
 public class Draft extends Base {
     @Test(priority = 0, dataProvider = "draftMailContentAndRecipientMail", dataProviderClass = MailDataProvider.class)
-    public void draftCreateWithContentAndReturnToInbox(String to, String subject, String message) {
-        mailPage.goToComposeNewEmailPage().writeMessageAndSaveItAsDraft(to, subject, message);
+    public void draftCreateWithContentAndReturnToInbox(Mail mail) {
+        mailPage.goToComposeNewEmailPage().writeMessageAndSaveItAsDraft(mail);
         Wait<WebDriver> wait = new FluentWait<>(driver)
                 .withTimeout(5, TimeUnit.SECONDS)
                 .pollingEvery(1, TimeUnit.SECONDS);
@@ -36,27 +37,24 @@ public class Draft extends Base {
 
 
     @Test(priority = 2, dataProvider = "draftMailContentAndRecipientMail", dataProviderClass = MailDataProvider.class)
-    public void checkDraftContent(String to, String subject, String message) {
+    public void checkDraftContent(Mail mail) {
         DraftFolder draftFolder = mailPage.draftFolderForceGo();
         ReportUtil.highlightElement(driver, draftFolder.getDraftRecipientMail());
-        Assert.assertEquals(draftFolder.getDraftRecipientMailText(), to);
+        boolean allRecipientPresent = mail.getRecipients().stream().allMatch(recipient -> draftFolder.getDraftRecipientMailText().contains(recipient));
+        Assert.assertTrue(allRecipientPresent);
 
         ReportUtil.highlightElement(driver, draftFolder.getDraftRecipientSubject());
-        Assert.assertEquals(draftFolder.getDraftRecipientSubjectText(), subject);
+        Assert.assertEquals(draftFolder.getDraftRecipientSubjectText(), mail.getMailSubject());
 
         ReportUtil.highlightElement(driver, draftFolder.getDraftRecipientMessage());
-        Assert.assertEquals(draftFolder.getDraftRecipientMessageText(), message);
+        Assert.assertEquals(draftFolder.getDraftRecipientMessageText(), mail.getMailMessage());
     }
 
     @AfterTest(alwaysRun = true, groups = "afterTestCheck")
     public void checkDraftDisappearedFromFolder() {
         DraftFolder draftFolder = mailPage.draftFolderForceGo();
-        Wait<WebDriver> wait = new FluentWait<>(driver)
-                .withTimeout(10, TimeUnit.SECONDS)
-                .pollingEvery(1, TimeUnit.SECONDS);
-        wait.until(WebElement -> draftFolder.getEmptyFolderDiv());
-        Assert.assertNotNull(draftFolder.getEmptyFolderDiv());
         draftFolder.getEmptyFolderDiv().getText();
         ReportUtil.highlightElement(driver, draftFolder.getEmptyFolderDiv());
+        Assert.assertNotNull(draftFolder.getEmptyFolderDiv());
     }
 }

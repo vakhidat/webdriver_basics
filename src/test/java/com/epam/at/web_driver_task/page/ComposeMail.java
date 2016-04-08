@@ -1,5 +1,6 @@
 package com.epam.at.web_driver_task.page;
 
+import com.epam.at.web_driver_task.business_object.Mail;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -21,10 +22,10 @@ public class ComposeMail extends MailPage {
         PageFactory.initElements(this.driver, this);
     }
 
-    public void writeMessageAndSaveItAsDraft(String to, String subject, String message) {
-        mailRecipientEmailInput.sendKeys(to);
-        mailSubjectInput.sendKeys(subject);
-        mailMessageInput.sendKeys(message);
+    public void writeMessageAndSaveItAsDraft(Mail mail) {
+        mail.getRecipients().stream().forEach(mailRecipientEmailInput::sendKeys);
+        mailSubjectInput.sendKeys(mail.getMailSubject());
+        mailMessageInput.sendKeys(mail.getMailMessage());
         this.goToInboxPage();
         alertSaveConfirmation.click();
     }
