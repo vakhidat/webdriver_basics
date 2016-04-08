@@ -1,6 +1,6 @@
 package com.epam.at.web_driver_task.test;
 
-import com.epam.at.web_driver_task.webdriver.WebDriverRemoteFactory;
+import com.epam.at.web_driver_task.webdriver.factory.WebDriverRemoteFactory;
 import com.epam.at.web_driver_task.page.Inbox;
 import com.epam.at.web_driver_task.page.MailPage;
 import com.epam.at.web_driver_task.page.Main;
@@ -18,7 +18,7 @@ public class Base {
     @BeforeTest(alwaysRun = true)
     @Parameters("browserName")
     public static void setUpDriver(String browserName) throws MalformedURLException {
-        driver = WebDriverRemoteFactory.detDriverForBrowser(browserName);
+        driver = WebDriverRemoteFactory.getDriverForBrowser(browserName);
         driver.manage().window().maximize();
         driver.get(Main.YANDEX_URL);
         mailPage = new Inbox(driver);
