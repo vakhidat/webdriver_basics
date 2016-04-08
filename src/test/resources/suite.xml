@@ -1,49 +1,22 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="YandexMailCheck" parallel="false">
-    <test name="Authorisation" parallel="false" preserve-order="true">
+    <parameter name="browserName" value="firefox"/>
+    <test name="ScenarioAutomateFirefox" parallel="false" preserve-order="true">
         <classes>
-            <class name="com.epam.at.web_driver_task.test.Authorisation">
-                <methods>
-                    <include name="loginSuccessIfMailAndPasswordAreCorrect"/>
-                </methods>
-            </class>
-        </classes>
-    </test>
-    <test name="DraftCreation" preserve-order="true">
-        <classes>
+            <class name="com.epam.at.web_driver_task.test.Authorisation"/>
             <class name="com.epam.at.web_driver_task.test.Draft">
-                <methods>
-                    <include name="draftCreateWithContentAndReturnToInbox"/>
-                    <include name="checkDraftIsPresentInDraftFolder"/>
-                    <include name="checkDraftContent"/>
-                </methods>
             </class>
-        </classes>
-    </test>
-    <test name="MailSend" preserve-order="true">
-        <classes>
             <class name="com.epam.at.web_driver_task.test.MailSend">
-                <methods>
-                    <include name="sendMailFromDraftAndVerifySuccessSend"/>
-                </methods>
             </class>
         </classes>
     </test>
-    <test name="DraftDisappears">
+    <test name="ScenarioAutomateChrome" parallel="false" preserve-order="true">
+        <parameter name="browserName" value="chrome"/>
         <classes>
+            <class name="com.epam.at.web_driver_task.test.Authorisation"/>
             <class name="com.epam.at.web_driver_task.test.Draft">
-                <methods>
-                    <include name="checkDraftDisappearedFromFolder"/>
-                </methods>
             </class>
-        </classes>
-    </test>
-    <test name="CheckSend" preserve-order="true">
-        <classes>
             <class name="com.epam.at.web_driver_task.test.MailSend">
-                <methods>
-                    <include name="checkMailPresentInSentFolder"/>
-                </methods>
             </class>
         </classes>
     </test>
