@@ -1,7 +1,7 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="YandexMailCheck" parallel="false">
     <parameter name="browserName" value="firefox"/>
-    <test name="ScenarioAutomateFirefox" parallel="false" preserve-order="true">
+    <test name="ScenarioAutomateFirefox" preserve-order="true">
         <classes>
             <class name="com.epam.at.web_driver_task.test.Authorisation"/>
             <class name="com.epam.at.web_driver_task.test.Draft">
@@ -10,7 +10,7 @@
             </class>
         </classes>
     </test>
-    <test name="ScenarioAutomateChrome" parallel="false" preserve-order="true">
+    <test name="ScenarioAutomateChrome"  preserve-order="true">
         <parameter name="browserName" value="chrome"/>
         <classes>
             <class name="com.epam.at.web_driver_task.test.Authorisation"/>

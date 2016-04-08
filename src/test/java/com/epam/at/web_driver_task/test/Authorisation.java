@@ -26,5 +26,6 @@ public class Authorisation extends Base {
     @AfterTest(alwaysRun = true, dependsOnGroups = "afterTestCheck")
     public void logout() {
         mailPage.logout();
+        log.info("logout success");
     }
 }
