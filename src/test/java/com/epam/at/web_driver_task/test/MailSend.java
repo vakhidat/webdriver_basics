@@ -16,6 +16,8 @@ import java.util.concurrent.TimeUnit;
 
 @Slf4j
 public class MailSend extends Base {
+    public static final String SCREENSHOT_PREFIX = "mail-send";
+
     @Test
     public void sendMailFromDraftAndVerifySuccessSend() throws InterruptedException {
         DraftPage draftPage = mailPage.draftFolderForceGo().goToFirstDraftInFolder();
@@ -25,15 +27,15 @@ public class MailSend extends Base {
                 .withTimeout(5, TimeUnit.SECONDS)
                 .pollingEvery(1, TimeUnit.SECONDS);
         wait.until(webDriver -> driver.getCurrentUrl().endsWith(MailSendSuccess.DONE_PAGE_SUFFICS));
+        ReportUtil.highlightElementAndTakeScreenshot(driver, mailSendSuccess.getMailSendSuccessfullyMessage(), SCREENSHOT_PREFIX);
         Assert.assertEquals(mailSendSuccess.getMailSendSuccessfullyMessageText(), MailSendSuccess.MAIL_SEND_MESSAGE);
-        log.info("mail send");
+        log.info("mail send success");
     }
 
     @AfterTest(groups = "afterTestCheck")
     public void checkMailPresentInSentFolder() {
         WebElement sentMessageDiv = mailPage.goToSentFolder().getSentMessageDiv();
-
-        ReportUtil.highlightElement(driver, sentMessageDiv);
+        ReportUtil.highlightElementAndTakeScreenshot(driver, sentMessageDiv, SCREENSHOT_PREFIX);
         Assert.assertNotNull(sentMessageDiv);
         log.info("mail present in Sent folder");
     }

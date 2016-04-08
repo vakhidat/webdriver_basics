@@ -5,6 +5,7 @@ import com.epam.at.web_driver_task.dataprovider.MailDataProvider;
 import com.epam.at.web_driver_task.page.DraftFolder;
 import com.epam.at.web_driver_task.page.Inbox;
 import com.epam.at.web_driver_task.util.ReportUtil;
+import com.epam.at.web_driver_task.util.ScreenshotUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.FluentWait;
@@ -17,6 +18,9 @@ import java.util.concurrent.TimeUnit;
 
 @Slf4j
 public class Draft extends Base {
+
+    public static final String SCREENSHOT_PREFIX = "draft";
+
     @Test(priority = 0, dataProvider = "draftMailContentAndRecipientMail", dataProviderClass = MailDataProvider.class)
     public void draftCreateWithContentAndReturnToInbox(Mail mail) {
         mailPage.goToComposeNewEmailPage().writeMessageAndSaveItAsDraft(mail);
@@ -45,6 +49,9 @@ public class Draft extends Base {
     @Test(priority = 2, dataProvider = "draftMailContentAndRecipientMail", dataProviderClass = MailDataProvider.class)
     public void checkDraftContent(Mail mail) {
         DraftFolder draftFolder = mailPage.draftFolderForceGo();
+
+        ReportUtil.highlightElementAndTakeScreenshot(driver, draftFolder.getDraftFirstInList(), SCREENSHOT_PREFIX);
+
         ReportUtil.highlightElement(driver, draftFolder.getDraftRecipientMail());
         boolean allRecipientPresent = mail.getRecipients().stream().allMatch(recipient -> draftFolder.getDraftRecipientMailText().contains(recipient));
         Assert.assertTrue(allRecipientPresent);
@@ -70,6 +77,7 @@ public class Draft extends Base {
         DraftFolder draftFolder = mailPage.draftFolderForceGo();
         draftFolder.getEmptyFolderDiv().getText();
         ReportUtil.highlightElement(driver, draftFolder.getEmptyFolderDiv());
+        ScreenshotUtils.makeScreenshot(driver, SCREENSHOT_PREFIX);
         Assert.assertNotNull(draftFolder.getEmptyFolderDiv());
         log.info("draft disappeared");
     }
