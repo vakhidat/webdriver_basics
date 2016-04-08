@@ -14,7 +14,6 @@ import java.net.MalformedURLException;
 public class Base {
     protected static WebDriver driver;
     protected static MailPage mailPage;
-    protected static final String HUB = "http://10.12.12.237:4444/wd/hub";
 
     @BeforeTest(alwaysRun = true)
     @Parameters("browserName")
