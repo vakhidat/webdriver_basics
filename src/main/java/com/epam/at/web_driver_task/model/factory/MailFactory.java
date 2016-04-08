@@ -1,7 +1,7 @@
-package com.epam.at.web_driver_task.factory;
+package com.epam.at.web_driver_task.model.factory;
 
 
-import com.epam.at.web_driver_task.business_object.Mail;
+import com.epam.at.web_driver_task.model.entity.Mail;
 
 import java.util.List;
 

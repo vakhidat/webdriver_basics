@@ -1,6 +1,6 @@
 package com.epam.at.web_driver_task.page;
 
-import com.epam.at.web_driver_task.business_object.Mail;
+import com.epam.at.web_driver_task.model.entity.Mail;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;

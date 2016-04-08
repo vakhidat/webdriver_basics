@@ -1,4 +1,4 @@
-package com.epam.at.web_driver_task.business_object;
+package com.epam.at.web_driver_task.model.entity;
 
 public class User {
     private String login;

@@ -1,6 +1,6 @@
 package com.epam.at.web_driver_task.test;
 
-import com.epam.at.web_driver_task.business_object.User;
+import com.epam.at.web_driver_task.model.entity.User;
 import com.epam.at.web_driver_task.dataprovider.MailDataProvider;
 import com.epam.at.web_driver_task.page.MailPage;
 import com.epam.at.web_driver_task.page.Main;

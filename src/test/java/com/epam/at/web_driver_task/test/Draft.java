@@ -1,6 +1,6 @@
 package com.epam.at.web_driver_task.test;
 
-import com.epam.at.web_driver_task.business_object.Mail;
+import com.epam.at.web_driver_task.model.entity.Mail;
 import com.epam.at.web_driver_task.dataprovider.MailDataProvider;
 import com.epam.at.web_driver_task.page.DraftFolder;
 import com.epam.at.web_driver_task.page.Inbox;

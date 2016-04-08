@@ -1,7 +1,7 @@
 package com.epam.at.web_driver_task.dataprovider;
 
-import com.epam.at.web_driver_task.business_object.Mail;
-import com.epam.at.web_driver_task.business_object.User;
+import com.epam.at.web_driver_task.model.entity.Mail;
+import com.epam.at.web_driver_task.model.entity.User;
 import org.testng.annotations.DataProvider;
 
 import java.lang.reflect.Method;
