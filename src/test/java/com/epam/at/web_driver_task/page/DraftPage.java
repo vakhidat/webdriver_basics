@@ -29,11 +29,11 @@ public class DraftPage extends MailPage {
         return draftSubject.getText();
     }
 
-    public String  getDraftRecipientEmailText() {
+    public String getDraftRecipientEmailText() {
         return draftRecipientEmail.getText();
     }
 
-    public String  getDraftMessageText() {
+    public String getDraftMessageText() {
         return draftMessage.getText();
     }
 }

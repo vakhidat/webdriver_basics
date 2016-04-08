@@ -1,32 +1,21 @@
 package com.epam.at.web_driver_task.test;
 
-import com.epam.at.web_driver_task.MailDataProvider;
 import com.epam.at.web_driver_task.page.DraftFolder;
 import com.epam.at.web_driver_task.page.Inbox;
+import com.epam.at.web_driver_task.util.MailDataProvider;
 import com.epam.at.web_driver_task.util.ReportUtil;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.Wait;
 import org.testng.Assert;
-import org.testng.annotations.Factory;
+import org.testng.annotations.AfterTest;
 import org.testng.annotations.Test;
 
 import java.util.concurrent.TimeUnit;
 
-public class Draft extends MailScenario {
-    private String to;
-    private String subject;
-    private String message;
-
-    @Factory(dataProvider = "draftMailContentAndRecipientMail", dataProviderClass = MailDataProvider.class)
-    public Draft(String to, String subject, String message) {
-        this.to = to;
-        this.subject = subject;
-        this.message = message;
-    }
-
-    @Test(priority = 0)
-    public void draftCreateWithContentAndReturnToInbox() {
+public class Draft extends Base {
+    @Test(priority = 0, dataProvider = "draftMailContentAndRecipientMail", dataProviderClass = MailDataProvider.class)
+    public void draftCreateWithContentAndReturnToInbox(String to, String subject, String message) {
         mailPage.goToComposeNewEmailPage().writeMessageAndSaveItAsDraft(to, subject, message);
         Wait<WebDriver> wait = new FluentWait<>(driver)
                 .withTimeout(5, TimeUnit.SECONDS)
@@ -46,8 +35,8 @@ public class Draft extends MailScenario {
     }
 
 
-    @Test(priority = 2)
-    public void checkDraftContent() {
+    @Test(priority = 2, dataProvider = "draftMailContentAndRecipientMail", dataProviderClass = MailDataProvider.class)
+    public void checkDraftContent(String to, String subject, String message) {
         DraftFolder draftFolder = mailPage.draftFolderForceGo();
         ReportUtil.highlightElement(driver, draftFolder.getDraftRecipientMail());
         Assert.assertEquals(draftFolder.getDraftRecipientMailText(), to);
@@ -59,7 +48,7 @@ public class Draft extends MailScenario {
         Assert.assertEquals(draftFolder.getDraftRecipientMessageText(), message);
     }
 
-    @Test
+    @AfterTest(alwaysRun = true, groups = "afterTestCheck")
     public void checkDraftDisappearedFromFolder() {
         DraftFolder draftFolder = mailPage.draftFolderForceGo();
         draftFolder.getEmptyFolderDiv().getText();

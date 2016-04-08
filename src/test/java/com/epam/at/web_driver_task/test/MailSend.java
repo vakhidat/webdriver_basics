@@ -8,11 +8,12 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.Wait;
 import org.testng.Assert;
+import org.testng.annotations.AfterTest;
 import org.testng.annotations.Test;
 
 import java.util.concurrent.TimeUnit;
 
-public class MailSend extends MailScenario {
+public class MailSend extends Base {
     @Test
     public void sendMailFromDraftAndVerifySuccessSend() throws InterruptedException {
         DraftPage draftPage = mailPage.draftFolderForceGo().goToFirstDraftInFolder();
@@ -25,7 +26,7 @@ public class MailSend extends MailScenario {
         Assert.assertEquals(mailSendSuccess.getMailSendSuccessfullyMessageText(), MailSendSuccess.MAIL_SEND_MESSAGE);
     }
 
-    @Test
+    @AfterTest(groups = "afterTestCheck")
     public void checkMailPresentInSentFolder() {
         WebElement sentMessageDiv = mailPage.goToSentFolder().getSentMessageDiv();
 
