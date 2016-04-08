@@ -1,9 +1,9 @@
 package com.epam.at.web_driver_task.test;
 
 import com.epam.at.web_driver_task.business_object.Mail;
+import com.epam.at.web_driver_task.dataprovider.MailDataProvider;
 import com.epam.at.web_driver_task.page.DraftFolder;
 import com.epam.at.web_driver_task.page.Inbox;
-import com.epam.at.web_driver_task.dataprovider.MailDataProvider;
 import com.epam.at.web_driver_task.util.ReportUtil;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.FluentWait;

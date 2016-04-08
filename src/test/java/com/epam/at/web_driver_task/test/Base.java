@@ -1,6 +1,6 @@
 package com.epam.at.web_driver_task.test;
 
-import com.epam.at.web_driver_task.factory.WebDriverRemoteFactory;
+import com.epam.at.web_driver_task.webdriver.WebDriverRemoteFactory;
 import com.epam.at.web_driver_task.page.Inbox;
 import com.epam.at.web_driver_task.page.MailPage;
 import com.epam.at.web_driver_task.page.Main;

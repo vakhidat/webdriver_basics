@@ -1,4 +1,4 @@
-package com.epam.at.web_driver_task.factory;
+package com.epam.at.web_driver_task.webdriver;
 
 import org.openqa.selenium.Platform;
 import org.openqa.selenium.WebDriver;
