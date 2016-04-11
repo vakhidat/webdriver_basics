@@ -20,7 +20,7 @@ public class MailSend extends Base {
 
     @Test
     public void sendMailFromDraftAndVerifySuccessSend() throws InterruptedException {
-        DraftPage draftPage = mailPage.draftFolderForceGo().goToFirstDraftInFolder();
+        DraftPage draftPage = mailbox.draftFolderForceGo().goToFirstDraftInFolder();
         Assert.assertTrue(draftPage.getDraftRecipientEmailText().equals(""));
         MailSendSuccess mailSendSuccess = draftPage.sendMail();
         Wait<WebDriver> wait = new FluentWait<>(driver)
@@ -34,7 +34,7 @@ public class MailSend extends Base {
 
     @AfterTest(groups = "afterTestCheck")
     public void checkMailPresentInSentFolder() {
-        WebElement sentMessageDiv = mailPage.goToSentFolder().getSentMessageDiv();
+        WebElement sentMessageDiv = mailbox.goToSentFolder().getSentMessageDiv();
         ReportUtil.highlightElementAndTakeScreenshot(driver, sentMessageDiv, SCREENSHOT_PREFIX);
         Assert.assertNotNull(sentMessageDiv);
         log.info("mail present in Sent folder");

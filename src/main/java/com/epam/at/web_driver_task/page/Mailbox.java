@@ -6,7 +6,7 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-public abstract class MailPage {
+public abstract class Mailbox {
     public static final String YANDEX_MAILBOX_URL_FRAGMENT = "https://mail.yandex.kz/?ncrnd=";
 
     protected WebDriver driver;
@@ -23,7 +23,7 @@ public abstract class MailPage {
     @FindBy(xpath = "id(\"user-dropdown-popup\")/descendant::div[@class=\"b-mail-dropdown__item\"][6]/a")
     private WebElement logoutLink;
 
-    public MailPage(WebDriver driver) {
+    public Mailbox(WebDriver driver) {
         this.driver = driver;
         this.actionsBuilder = new Actions(driver);
         PageFactory.initElements(this.driver, this);

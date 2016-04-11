@@ -23,7 +23,7 @@ public class Draft extends Base {
 
     @Test(priority = 0, dataProvider = "draftMailContentAndRecipientMail", dataProviderClass = MailDataProvider.class)
     public void draftCreateWithContentAndReturnToInbox(Mail mail) {
-        mailPage.goToComposeNewEmailPage().writeMessageAndSaveItAsDraft(mail);
+        mailbox.goToComposeNewEmailPage().writeMessageAndSaveItAsDraft(mail);
         Wait<WebDriver> wait = new FluentWait<>(driver)
                 .withTimeout(5, TimeUnit.SECONDS)
                 .pollingEvery(1, TimeUnit.SECONDS);
@@ -39,7 +39,7 @@ public class Draft extends Base {
                 .withTimeout(5, TimeUnit.SECONDS)
                 .pollingEvery(1, TimeUnit.SECONDS);
         wait.until(webDriver -> driver.getCurrentUrl().endsWith(Inbox.SUFFIX));
-        DraftFolder draftFolder = mailPage.draftFolderForceGo();
+        DraftFolder draftFolder = mailbox.draftFolderForceGo();
         Assert.assertNotNull(draftFolder.getDraftFirstInList());
         ReportUtil.highlightElement(driver, draftFolder.getDraftFirstInList());
         log.info("draft is present in folder");
@@ -48,7 +48,7 @@ public class Draft extends Base {
 
     @Test(priority = 2, dataProvider = "draftMailContentAndRecipientMail", dataProviderClass = MailDataProvider.class)
     public void checkDraftContent(Mail mail) {
-        DraftFolder draftFolder = mailPage.draftFolderForceGo();
+        DraftFolder draftFolder = mailbox.draftFolderForceGo();
 
         ReportUtil.highlightElementAndTakeScreenshot(driver, draftFolder.getDraftFirstInList(), SCREENSHOT_PREFIX);
 
@@ -74,7 +74,7 @@ public class Draft extends Base {
 
     @AfterTest(alwaysRun = true, groups = "afterTestCheck")
     public void checkDraftDisappearedFromFolder() {
-        DraftFolder draftFolder = mailPage.draftFolderForceGo();
+        DraftFolder draftFolder = mailbox.draftFolderForceGo();
         draftFolder.getEmptyFolderDiv().getText();
         ReportUtil.highlightElement(driver, draftFolder.getEmptyFolderDiv());
         ScreenshotUtils.makeScreenshot(driver, SCREENSHOT_PREFIX);

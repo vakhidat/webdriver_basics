@@ -24,9 +24,10 @@ public class Main {
         PageFactory.initElements(this.driver, this);
     }
 
-    public void login(String login, String password) {
+    public Inbox login(String login, String password) {
         loginInput.sendKeys(login);
         passwordInput.sendKeys(password);
         buttonLogIn.click();
+        return new Inbox(driver);
     }
 }

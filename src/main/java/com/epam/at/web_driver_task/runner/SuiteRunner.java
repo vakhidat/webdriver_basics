@@ -10,7 +10,7 @@ import java.io.IOException;
 import java.util.List;
 
 public class SuiteRunner {
-    public static final String SUITE_XML = "src/test/resources/suite.xml";
+    public static final String SUITE_XML = "src/main/resources/suite.xml";
 
     public static void main(String[] args) throws IOException, SAXException, ParserConfigurationException {
         TestNG tng = new TestNG(true);

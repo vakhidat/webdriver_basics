@@ -7,7 +7,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 @Getter
-public class DraftPage extends MailPage {
+public class DraftPage extends Mailbox {
     @FindBy(xpath = "//div[@class=\"b-mail-input__yabbles\"]/div/input")
     private WebElement draftRecipientEmail;
     @FindBy(xpath = "id(\"compose-subj\")")

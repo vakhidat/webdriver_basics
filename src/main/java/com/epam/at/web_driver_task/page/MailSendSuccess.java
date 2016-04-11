@@ -7,7 +7,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 @Getter
-public class MailSendSuccess extends MailPage {
+public class MailSendSuccess extends Mailbox {
     public static final String MAIL_SEND_MESSAGE = "Письмо успешно отправлено.";
     public static final String DONE_PAGE_SUFFICS = "#done";
 
