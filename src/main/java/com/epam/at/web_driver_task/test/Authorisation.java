@@ -1,9 +1,9 @@
 package com.epam.at.web_driver_task.test;
 
 import com.epam.at.web_driver_task.model.entity.User;
-import com.epam.at.web_driver_task.page.Main;
-import com.epam.at.web_driver_task.service.MainPageManager;
 import com.epam.at.web_driver_task.test.dataprovider.MailDataProvider;
+import com.epam.at.web_driver_task.ui.page.Main;
+import com.epam.at.web_driver_task.ui.service.MainPageManager;
 import org.testng.Assert;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.Test;

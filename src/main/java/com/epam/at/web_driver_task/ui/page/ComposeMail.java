@@ -1,4 +1,4 @@
-package com.epam.at.web_driver_task.page;
+package com.epam.at.web_driver_task.ui.page;
 
 import com.epam.at.web_driver_task.model.entity.Mail;
 import org.openqa.selenium.WebDriver;

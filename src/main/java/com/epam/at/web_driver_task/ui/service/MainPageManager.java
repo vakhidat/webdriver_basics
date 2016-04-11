@@ -1,4 +1,4 @@
-package com.epam.at.web_driver_task.service;
+package com.epam.at.web_driver_task.ui.service;
 
 import com.epam.at.web_driver_task.model.entity.User;
 import com.epam.at.web_driver_task.page.Inbox;

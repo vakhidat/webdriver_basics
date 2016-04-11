@@ -1,4 +1,4 @@
-package com.epam.at.web_driver_task.page;
+package com.epam.at.web_driver_task.ui.page;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
