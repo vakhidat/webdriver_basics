@@ -7,12 +7,16 @@ import org.openqa.selenium.WebElement;
 public final class ReportUtil {
     private static final String DEFAULT_HIGHLIGHT_COLOR = "yellow";
     private static final String DEFAULT_HIGHLIGHT = "red";
-    public static final String DEFAULT_SCREENSHOT_PREFIX = "hl-el";
+    private static final String DEFAULT_SCREENSHOT_PREFIX = "hl-el";
+
+    public static void highlightElement(WebDriver driver, WebElement element, String color) {
+        String backgroundColor = element.getCssValue("backgroundColor");
+        startHighlightElement(driver, element, color);
+        stopHighlightElement(driver, element, backgroundColor);
+    }
 
     public static void highlightElement(WebDriver driver, WebElement element) {
-        String backgroundColor = element.getCssValue("backgroundColor");
-        startHighlightElement(driver, element, DEFAULT_HIGHLIGHT_COLOR);
-        stopHighlightElement(driver, element, backgroundColor);
+        highlightElement(driver, element, DEFAULT_HIGHLIGHT_COLOR);
     }
 
     public static void highlightElementAndTakeScreenshot(WebDriver driver, WebElement element, String screenshotPrefix, String color) {
