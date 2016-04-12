@@ -2,8 +2,9 @@ package com.epam.at.web_driver_task.test;
 
 import com.epam.at.web_driver_task.model.entity.Mail;
 import com.epam.at.web_driver_task.test.dataprovider.MailDataProvider;
-import com.epam.at.web_driver_task.page.DraftFolder;
-import com.epam.at.web_driver_task.page.Inbox;
+import com.epam.at.web_driver_task.ui.page.DraftFolder;
+import com.epam.at.web_driver_task.ui.page.Inbox;
+import com.epam.at.web_driver_task.ui.service.InboxManager;
 import com.epam.at.web_driver_task.util.ReportUtil;
 import com.epam.at.web_driver_task.util.ScreenshotUtils;
 import lombok.extern.slf4j.Slf4j;
@@ -18,19 +19,13 @@ import java.util.concurrent.TimeUnit;
 
 @Slf4j
 public class Draft extends Base {
-
     public static final String SCREENSHOT_PREFIX = "draft";
 
     @Test(priority = 0, dataProvider = "draftMailContentAndRecipientMail", dataProviderClass = MailDataProvider.class)
     public void draftCreateWithContentAndReturnToInbox(Mail mail) {
-        mailbox.goToComposeNewEmailPage().writeMessageAndSaveItAsDraft(mail);
-        Wait<WebDriver> wait = new FluentWait<>(driver)
-                .withTimeout(5, TimeUnit.SECONDS)
-                .pollingEvery(1, TimeUnit.SECONDS);
-        wait.until(webDriver -> driver.getCurrentUrl().endsWith(Inbox.SUFFIX));
-        log.info("Draft recipients: {}", mail.getRecipients());
-        log.info("Draft subject: {}", mail.getMailSubject());
-        log.info("Draft message: {}", mail.getMailMessage());
+        InboxManager manager = new InboxManager(driver);
+        boolean isInInbox = manager.composeNewMailAndReturnToInbox(mail);
+        Assert.assertTrue(isInInbox);
     }
 
     @Test(priority = 1)

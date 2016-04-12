@@ -5,8 +5,7 @@ import org.openqa.selenium.WebDriver;
 import java.util.concurrent.TimeUnit;
 
 public abstract class BaseManager {
-
-    protected WebDriver driver ;
+    protected WebDriver driver;
 
     public BaseManager(WebDriver driver){
         this.driver = driver;

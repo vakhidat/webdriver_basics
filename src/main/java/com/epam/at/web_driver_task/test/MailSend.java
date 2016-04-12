@@ -1,7 +1,7 @@
 package com.epam.at.web_driver_task.test;
 
-import com.epam.at.web_driver_task.page.DraftPage;
-import com.epam.at.web_driver_task.page.MailSendSuccess;
+import com.epam.at.web_driver_task.ui.page.DraftPage;
+import com.epam.at.web_driver_task.ui.page.MailSendSuccess;
 import com.epam.at.web_driver_task.util.ReportUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.openqa.selenium.WebDriver;

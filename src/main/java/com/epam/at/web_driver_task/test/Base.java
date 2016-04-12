@@ -1,8 +1,8 @@
 package com.epam.at.web_driver_task.test;
 
-import com.epam.at.web_driver_task.page.Inbox;
-import com.epam.at.web_driver_task.page.Mailbox;
-import com.epam.at.web_driver_task.page.Main;
+import com.epam.at.web_driver_task.ui.page.Inbox;
+import com.epam.at.web_driver_task.ui.page.Mailbox;
+import com.epam.at.web_driver_task.ui.page.Main;
 import com.epam.at.web_driver_task.webdriver.factory.WebDriverRemoteFactory;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.AfterTest;
