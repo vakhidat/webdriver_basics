@@ -13,20 +13,12 @@ public class InboxManager extends BaseManager {
         super(driver);
     }
 
-    public boolean composeNewMailAndReturnToInbox(Mail mail) {
+    public void composeNewMailAndReturnToInbox(Mail mail) {
         Mailbox mailbox = new Inbox(driver);
         mailbox.goToComposeNewEmailPage().writeMessageAndSaveItAsDraft(mail);
 
         log.info("Draft recipients: {}", mail.getRecipients());
         log.info("Draft subject: {}, Draft message: {}", mail.getMailSubject(), mail.getMailMessage().substring(0, 50));
-
-        return getCurrentUrl().endsWith(Inbox.SUFFIX);
-    }
-
-    public boolean isCurrentUrlIsMailboxPage() {
-        String currentUrl = getCurrentUrl();
-        log.info("Current url is {}", currentUrl);
-        return currentUrl.startsWith(Mailbox.YANDEX_MAILBOX_URL_FRAGMENT);
     }
 
     public MainPageManager logout() {

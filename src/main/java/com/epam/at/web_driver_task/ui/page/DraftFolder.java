@@ -33,6 +33,10 @@ public class DraftFolder extends Mailbox {
         return new DraftPage(this.driver);
     }
 
+    public boolean isDraftFolderEmpty() {
+        return emptyFolderDiv != null;
+    }
+
     public String getDraftRecipientMailText() {
         return draftRecipientMail.getAttribute("title");
     }

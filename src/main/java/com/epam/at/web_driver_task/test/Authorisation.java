@@ -17,7 +17,7 @@ public class Authorisation extends Base {
     public void loginSuccessIfMailAndPasswordAreCorrect(User user) {
         mainPageManager = new MainPageManager(driver);
         inboxManager = mainPageManager.login(user);
-        Assert.assertTrue(inboxManager.isCurrentUrlIsMailboxPage());
+        Assert.assertTrue(inboxManager.currentUrlIsMailboxPage());
     }
 
     @AfterTest(alwaysRun = true, dependsOnGroups = "afterTestCheck")
