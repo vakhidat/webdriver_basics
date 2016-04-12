@@ -3,8 +3,12 @@ package com.epam.at.web_driver_task.ui.service;
 import com.epam.at.web_driver_task.ui.page.DraftFolder;
 import com.epam.at.web_driver_task.ui.page.Inbox;
 import com.epam.at.web_driver_task.ui.page.Mailbox;
+import com.epam.at.web_driver_task.ui.page.SentFolder;
+import com.google.common.base.Function;
 import lombok.extern.slf4j.Slf4j;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.FluentWait;
+import org.openqa.selenium.support.ui.Wait;
 
 import java.util.concurrent.TimeUnit;
 
@@ -19,6 +23,17 @@ public abstract class BaseManager {
     public String getCurrentUrl() {
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
         return driver.getCurrentUrl();
+    }
+
+    public void fluentWait(int timeout, int polling, Function<? super WebDriver, ?> waitCondition) {
+        Wait<WebDriver> wait = new FluentWait<>(driver)
+                .withTimeout(timeout, TimeUnit.SECONDS)
+                .pollingEvery(polling, TimeUnit.SECONDS);
+        wait.until(waitCondition);
+    }
+
+    public SentFolder goToSentFolder() {
+        return new Inbox(driver).goToSentFolder();
     }
 
     public DraftFolder goToDraftFolder() {
