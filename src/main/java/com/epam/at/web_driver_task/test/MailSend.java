@@ -11,7 +11,7 @@ public class MailSend extends Base {
     @Test
     public void verifySuccessMailSendExpectedTrue() throws InterruptedException {
         sendMailManager = new SendMailManager(driver);
-        Assert.assertTrue(sendMailManager.sendMail());
+        Assert.assertTrue(sendMailManager.sendMailFromDraft());
     }
 
     @AfterTest(groups = "afterTestCheck")

@@ -15,9 +15,14 @@ public class SendMailManager extends BaseManager {
         super(driver);
     }
 
-    public boolean sendMail() {
+    public boolean sendMailFromDraft() {
         DraftPage draftPage = goToDraftFolder().goToFirstDraftInFolder();
+        if (!draftPage.getDraftRecipientEmailText().equals("")) {
+            log.info("that's a fail");
+        }
+
         MailSendSuccess mailSendSuccess = draftPage.sendMail();
+
 
         fluentWait(5, 1, (webDriver -> getCurrentUrl().endsWith(MailSendSuccess.DONE_PAGE_SUFFICS)));
         String mailSendSuccessfullyMessageText = mailSendSuccess.getMailSendSuccessfullyMessageText();

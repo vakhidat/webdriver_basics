@@ -5,8 +5,6 @@ import com.epam.at.web_driver_task.ui.page.Main;
 import lombok.extern.slf4j.Slf4j;
 import org.openqa.selenium.WebDriver;
 
-import java.util.concurrent.TimeUnit;
-
 @Slf4j
 public class MainPageManager extends BaseManager {
     public MainPageManager(WebDriver driver) {
@@ -14,7 +12,7 @@ public class MainPageManager extends BaseManager {
     }
 
     public InboxManager login (User user) {
-        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+        implicitlyWait(5);
         String login = user.getLogin();
         String password = user.getPassword();
         new Main(driver).login(login, password);
