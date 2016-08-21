@@ -9,7 +9,7 @@ import org.testng.annotations.Test;
 import java.util.concurrent.TimeUnit;
 
 public class MailSend extends MailScenario {
-    public static final String MAIL_SEND_MESSAGE = "Письмо успешно отправлено.";
+    public static final String MAIL_SEND_MESSAGE = "РџРёСЃСЊРјРѕ СѓСЃРїРµС€РЅРѕ РѕС‚РїСЂР°РІР»РµРЅРѕ.";
     public static final String DONE_SUFFICS = "#done";
 
     @Test
